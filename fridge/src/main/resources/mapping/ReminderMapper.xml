@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.ReminderMapper">
+    <!--根据类型获取需要检验的字段-->
+    <select id="getReminder" resultType="com.lryepoch.entity.product.ProductReminder">
+        select * from product_reminder
+    </select>
+
+    <delete id="clearReminder">
+        delete from product_reminder
+    </delete>
+
+    <insert id="insertReminder">
+        insert into product_reminder(id, pid, update_time)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.id}, #{item.pid}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+</mapper>

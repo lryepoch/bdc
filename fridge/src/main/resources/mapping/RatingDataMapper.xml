@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.RatingQueryMapper">
+    <insert id="insertRatingById">
+        insert into product_rating(uid, mid, profiling, color, interior, light, ergonomics, storage, operation)
+        values (#{uid},#{vo.id},#{vo.profiling},#{vo.color},#{vo.interior},#{vo.light},#{vo.ergonomics},#{vo.storage},#{vo.operation})
+    </insert>
+
+    <select id="getUserAvgRating" resultType="com.lryepoch.entity.dto.columns.UserRatingDTO">
+        select mid, round(avg(profiling),1) as profiling, round(avg(color),1) as color, round(avg(interior),1) as interior, round(avg(light),1) as light, round(avg(ergonomics),1) as ergonomics, round(avg(storage),1) as storage, round(avg(operation),1) as operation
+        from product_rating
+        where mid = #{id}
+    </select>
+</mapper>

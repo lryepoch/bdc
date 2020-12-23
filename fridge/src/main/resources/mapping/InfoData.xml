@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.InfoQueryMapper">
+    <update id="deleteProductInfo">
+        update product_info set deleted = 0
+        where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id" index="index">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="findOneProductInfo" resultType="com.lryepoch.entity.product.ProductInfo">
+        select * from product_info where model = #{model} and deleted = 1 limit 1
+    </select>
+
+    <!--根据筛选条件获取产品列表-->
+    <select id="getProductList" resultType="com.lryepoch.entity.dto.ProductListDTO">
+        select a.id, data_source, brand, door, a.level, a.model, a.display_mode, a.total_volume, a.platform_depth,
+        a.platform_width, a.compressor,
+        a.refrigeration_mode, b.id pid, price, b.active_time, a.update_time
+        from product_info a left join product_price b on a.model = b.model
+        where a.deleted=1 and b.deleted=1
+        <if test="model !=null and !model.equals('')">
+            and a.model=#{model}
+        </if>
+        <if test="dataSource!=null and dataSource.size()>0">
+            and data_source in
+            <foreach collection="dataSource" item="data_source" index="index" separator="," open="(" close=")">
+                #{data_source}
+            </foreach>
+        </if>
+
+        <if test="brand !=null and brand.size()>0">
+            and brand in
+            <foreach collection="brand" index="index" item="brand" open="(" close=")" separator=",">
+                #{brand}
+            </foreach>
+        </if>
+
+        <if test="updateTime !=null and updateTime.size()==2 and !updateTime.get(0).equals('')">
+            <![CDATA[ and a.update_time >= #{updateTime[0]}  ]]>
+        </if>
+        <if test="updateTime !=null and updateTime.size()==2 and !updateTime.get(1).equals('')">
+            <![CDATA[ and a.update_time <= #{updateTime[1]}  ]]>
+        </if>
+
+        <if test="price !=null and price.size()==2 and !price.get(0).equals('')">
+            <![CDATA[ and b.price >= #{price[0]}  ]]>
+        </if>
+        <if test="price !=null and price.size()==2 and !price.get(1).equals('')">
+            <![CDATA[ and b.price <= #{price[1]}  ]]>
+        </if>
+
+        <if test="door !=null and door.size()>0">
+            and door in
+            <foreach collection="door" index="index" item="door" open="(" close=")" separator=",">
+                #{door}
+            </foreach>
+        </if>
+
+        <if test="totalVolume !=null and totalVolume.size()==2 and !totalVolume.get(0).equals('')">
+            <![CDATA[ and a.total_volume >= #{totalVolume[0]}  ]]>
+        </if>
+        <if test="totalVolume !=null and totalVolume.size()==2 and !totalVolume.get(1).equals('')">
+            <![CDATA[ and a.total_volume <= #{totalVolume[1]}  ]]>
+        </if>
+
+        <if test="level !=null and level.size()>0">
+            and `level` in
+            <foreach collection="level" index="index" item="level" open="(" close=")" separator=",">
+                #{level}
+            </foreach>
+        </if>
+
+        <if test="compPowerConsumption !=null and compPowerConsumption.size()==2 and !compPowerConsumption.get(0).equals('')">
+            <![CDATA[ and a.comp_power_consumption >= #{compPowerConsumption[0]}  ]]>
+        </if>
+        <if test="compPowerConsumption !=null and compPowerConsumption.size()==2 and !compPowerConsumption.get(1).equals('')">
+            <![CDATA[ and a.comp_power_consumption <= #{compPowerConsumption[1]}  ]]>
+        </if>
+
+        <if test="noise !=null and noise.size()==2 and !noise.get(0).equals('')">
+            <![CDATA[ and a.noise >= #{noise[0]}  ]]>
+        </if>
+        <if test="noise !=null and noise.size()==2 and !noise.get(1).equals('')">
+            <![CDATA[ and a.noise <= #{noise[1]}  ]]>
+        </if>
+
+        <if test="compressor !=null and compressor.size()>0">
+            and compressor in
+            <foreach collection="compressor" index="index" item="compressor" open="(" close=")" separator=",">
+                #{compressor}
+            </foreach>
+        </if>
+
+        <if test="platformWidth !=null and platformWidth.size()==2 and !platformWidth.get(0).equals('')">
+            <![CDATA[ and a.platform_width >= #{platformWidth[0]}  ]]>
+        </if>
+        <if test="platformWidth !=null and platformWidth.size()==2 and !platformWidth.get(1).equals('')">
+            <![CDATA[ and a.platform_width <= #{platformWidth[1]}  ]]>
+        </if>
+        <if test="platformHeight !=null and platformHeight.size()==2 and !platformHeight.get(0).equals('')">
+            <![CDATA[ and a.platform_height >= #{platformHeight[0]}  ]]>
+        </if>
+        <if test="platformHeight !=null and platformHeight.size()==2 and !platformHeight.get(1).equals('')">
+            <![CDATA[ and a.platform_height <= #{platformHeight[1]}  ]]>
+        </if>
+        <if test="platformDepth !=null and platformDepth.size()==2 and !platformDepth.get(0).equals('')">
+            <![CDATA[ and a.platform_depth >= #{platformDepth[0]}  ]]>
+        </if>
+        <if test="platformDepth !=null and platformDepth.size()==2 and !platformDepth.get(1).equals('')">
+            <![CDATA[ and a.platform_depth <= #{platformDepth[1]}  ]]>
+        </if>
+
+        <if test="panelMaterial !=null and panelMaterial.size()>0">
+            and panel_material in
+            <foreach collection="panelMaterial" index="index" item="panel_material" open="(" close=")" separator=",">
+                #{panel_material}
+            </foreach>
+        </if>
+
+        <if test="refrigerationMode !=null and refrigerationMode.size()>0">
+            and refrigeration_mode in
+            <foreach collection="refrigerationMode" index="index" item="refrigeration_mode" open="(" close=")" separator=",">
+                #{refrigeration_mode}
+            </foreach>
+        </if>
+
+        <if test="refrigeratedLamp !=null and refrigeratedLamp.size()>0">
+            and refrigerated_lamp in
+            <foreach collection="refrigeratedLamp" index="index" item="refrigerated_lamp" open="(" close=")" separator=",">
+                #{refrigerated_lamp}
+            </foreach>
+        </if>
+
+        <if test="refrigerant !=null and refrigerant.size()>0">
+            and refrigerant in
+            <foreach collection="refrigerant" index="index" item="refrigerant" open="(" close=")" separator=",">
+                #{refrigerant}
+            </foreach>
+        </if>
+
+        <if test="marketTime !=null and marketTime.size()==2 and !marketTime.get(0).equals('')">
+            <![CDATA[ and a.market_time >= #{marketTime[0]}  ]]>
+        </if>
+        <if test="marketTime !=null and marketTime.size()==2 and !marketTime.get(1).equals('')">
+            <![CDATA[ and a.market_time <= #{marketTime[1]}  ]]>
+        </if>
+
+        <if test="displayMode !=null and displayMode.size()>0">
+            and display_mode in
+            <foreach collection="displayMode" index="index" item="display_mode" open="(" close=")" separator=",">
+                #{display_mode}
+            </foreach>
+        </if>
+
+        <if test="tempControlMode !=null and tempControlMode.size()>0">
+            and temp_control_mode in
+            <foreach collection="tempControlMode" index="index" item="temp_control_mode" open="(" close=")" separator=",">
+                #{temp_control_mode}
+            </foreach>
+        </if>
+
+        <if test="climateType !=null and climateType.size()>0">
+            and climate_type in
+            <foreach collection="climateType" index="index" item="climate_type" open="(" close=")" separator=",">
+                #{climate_type}
+            </foreach>
+        </if>
+
+        <if test="wifi !=null and wifi.size()>0">
+            and wifi in
+            <foreach collection="wifi" index="index" item="wifi" open="(" close=")" separator=",">
+                #{wifi}
+            </foreach>
+        </if>
+
+        <if test="systemType !=null and systemType.size()>0">
+            and system_type in
+            <foreach collection="systemType" index="index" item="system_type" open="(" close=")" separator=",">
+                #{system_type}
+            </foreach>
+        </if>
+
+        <if test="coolingMode !=null and coolingMode.size()>0">
+            and cooling_mode in
+            <foreach collection="coolingMode" index="index" item="cooling_mode" open="(" close=")" separator=",">
+                #{cooling_mode}
+            </foreach>
+        </if>
+
+        <if test="tempAreaNum !=null and tempAreaNum.size()>0">
+            and temp_area_num in
+            <foreach collection="tempAreaNum" index="index" item="temp_area_num" open="(" close=")" separator=",">
+                #{temp_area_num}
+            </foreach>
+        </if>
+
+        <if test="distributionChannel !=null and distributionChannel.size()>0">
+            and distribution_channel in
+            <foreach collection="distributionChannel" index="index" item="distribution_channel" open="(" close=")" separator=",">
+                #{distribution_channel}
+            </foreach>
+        </if>
+        order by a.update_time desc, id desc
+    </select>
+
+
+</mapper>

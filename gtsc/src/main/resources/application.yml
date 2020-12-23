@@ -1,0 +1,24 @@
+#分页
+pagehelper:
+  params: count=countSql
+  helper-dialect: mysql
+  reasonable: true
+  #自动分页配置，依据是入参，如果参数中有pageNum,pageSize分页参数，会自动分页，默认false
+  support-methods-arguments: true
+
+
+#配置多数据源
+spring:
+  datasource:
+    master:
+      url:
+      username:
+      password:
+      driver-class-name:
+      schema: db/master.sql
+    slave_1:
+      url:
+      username:
+      password:
+      driver-class-name:
+      schema: db/slave_1.sql

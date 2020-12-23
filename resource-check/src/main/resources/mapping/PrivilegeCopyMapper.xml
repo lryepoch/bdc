@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.resource.dao">
+
+    <!-- 当条件中有判断值是, 要是用 ==, 而不能使用单个 = -->
+    <!-- state !='' 传入0时，表达式的值为false; 所以不执行。  -->
+    <select id="select" resultMap="BaseResultMap">
+        select id, applicant, email, department, office, previous, previous_email, reason, insert_time, leader, leader_email, state, opinion, source_type
+        from privilege_copy_info
+        where enabled =1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="applicant != null and applicant != ''">
+            and applicant like concat('%', #{applicant}, '%')
+        </if>
+        <if test="email != null and email != ''">
+            and email like concat('%', #{email}, '%')
+        </if>
+        <if test="state !=null">
+            and state = #{state}
+        </if>
+        <if test="previous!=null and previous!=''">
+            and (previous like concat('%', #{previous}, '%') or previous_email like concat('%', #{previous}, '%'))
+        </if>
+        order by insert_time desc
+    </select>
+
+    <resultMap id="BaseResultMap" type="com.gree.privilege.entity.PrivilegeCopyVO">
+        <id column="id" property="id"/>
+        <result column="applicant" property="applicant"/>
+        <result column="email" property="email"/>
+        <result column="department" property="department"/>
+        <result column="office" property="office"/>
+        <result column="previous" property="previous"/>
+        <result column="previous_email" property="previousEmail"/>
+        <result column="reason" property="reason"/>
+        <result column="insert_time" property="insertTime"/>
+        <result column="leader" property="leader"/>
+        <result column="leader_email" property="leaderEmail"/>
+        <collection property="relation" javaType="list" ofType="com.gree.privilege.entity.PrivilegeCopyRelation"
+                    column="id" select="com.gree.privilege.mapper.PrivilegeCopyMapper.selectByCopyId">
+        </collection>
+    </resultMap>
+
+</mapper>

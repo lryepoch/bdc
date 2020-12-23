@@ -1,0 +1,65 @@
+server:
+  servlet:
+    context-path: /fridge
+  port: 8081
+
+#自定义数据源
+datasource:
+  driverName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:3306/fridge?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+  userName: root
+  password: 123456
+  mapperPath: classpath:/mapping/*.xml
+
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml            #mapper.xml文件位置
+  type-aliases-package: com.lryepoch.entity             #配置别名
+  configuration:
+    map-underscore-to-camel-case: true                  #开启驼峰命名【mybatis默认使属性名和数据库字段名一一对应的，需要开启驼峰命名】
+
+#文件服务器
+ftp:
+  host: 127.0.0.1
+  port: 21
+  username: frigroot
+  password: qwer!2344
+  tempPath: ‪C:/Users/260408/Desktop/aimFile/
+  picPath: frigroot
+
+
+path:
+  localPath: http://127.0.0.1:8081/fridge
+  picturePath: /home/frigroot
+  excelPath: /home/frigroot
+  loginUrl: http://127.0.0.1:8081/login
+  indexUrl: http://127.0.0.1:8081/
+
+#分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true          #  自动分页配置，依据的是入参，如果参数中有pageNum，pageSize分页参数，会自动分页，默认false
+  params: count=countSql
+
+#日志。logging.level设置日志级别，可以使用root级别和package级别来控制日志的输入级别
+logging:
+  level:
+    root: INFO
+    com.lryepoch.dao: debug
+
+#sql日志处理
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+      properties.hibernate.format_sql: true
+    servlet:
+      multipart:
+        max-file-size: 50MB                #上传文件最大50MB
+        max-request-size: 500MB            #上传文件整个请求不超过500MB

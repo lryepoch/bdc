@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.PriceQueryMapper">
+    <update id="deletePriById">
+        update product_price a, product_info b set a.deleted = 0
+        where a.model = b.model and b.id in
+        <foreach collection="ids" index="index" item="id" close=")" open="(" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectMatchedPriceFromReptile" resultType="com.lryepoch.entity.product.ProductPrice">
+        select a.model, price, distribution_channel as distributionChannel, active_time as activeTime, a.update_time as updateTime, a.deleted
+        from new_product_price a, product_info b
+        where a.model = b.model and a.deleted=1 and b.deleted=1
+    </select>
+
+    <insert id="insertUpdatePrice">
+        insert into product_price(model, price, distribution_channel, active_time, update_time, deleted)
+        values
+        <foreach collection="priceList" item="item" separator=",">
+            (#{item.model}, #{item.price}, #{item.distributionChannel}, #{item.activeTime}, #{item.updateTime}, #{item.deleted})
+        </foreach>
+    </insert>
+
+    <update id="deleteReptilePriceByWeekUpdate">
+        update new_product_price a, product_price b
+        set a.deleted = 0
+        where a.model = b.model and b.deleted=1 and a.deleted=1
+    </update>
+
+    <select id="selectMatchIdFromReptile" resultType="java.lang.Integer">
+        select b.id
+        from new_product_price a, product_info b
+        where a.model=b.model and b.deleted=1 and a.deleted=1
+    </select>
+
+</mapper>

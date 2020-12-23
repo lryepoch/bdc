@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.ProfQueryMapper">
+    <update id="deleteProParamById">
+        update product_info a, product_professional_parameters b set b.deleted = 0
+        where a.model = b.model and a.id in
+        <foreach collection="ids" item="id" index="index" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

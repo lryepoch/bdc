@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.ColumnsMapper">
+    <!--根据类型获取需要检验的字段-->
+    <select id="getAimedList" resultType="com.lryepoch.entity.dto.columns.ColumnDTO">
+        select id, `column`, column_zh as columnZh, flag
+        from comparative_table
+        where `type` = #{type} and `column`!='updateTime' and parent>0
+    </select>
+
+    <select id="getExcelPriceList" resultType="com.lryepoch.entity.dto.columns.ColumnDTO">
+        select `column`,`type` from comparative_table where `table`='price' and `column`!='updateTime' and parent>0 order by id
+    </select>
+
+    <select id="getFilterValue" resultType="java.lang.String">
+        select distinct ${columnName} from ${tableName} a where deleted=1
+    </select>
+
+    <select id="getExcelInfoList" resultType="com.lryepoch.entity.dto.columns.ColumnDTO">
+        select `column`,`type` from comparative_table where `table`='info' and `column`!='updateTime' and parent>0 order by id
+    </select>
+</mapper>

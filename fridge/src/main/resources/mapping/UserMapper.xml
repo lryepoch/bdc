@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.UserQueryMapper">
+    <delete id="deleteUserRole">
+        delete from t_user_role
+        where u_id=#{uId}
+    </delete>
+
+    <insert id="addUserRole">
+        insert into t_user_role(u_id, r_id)
+        values (#{uId},#{rId})
+    </insert>
+
+    <select id="searchUser" resultType="com.lryepoch.entity.usermanage.User">
+        select id, account, user_name as userName, department, company, update_time as updateTime, deleted
+        from t_user
+        where (account like concat('%',#{str},'%') or user_name like concat('%',#{str},'%')) and deleted=1
+    </select>
+
+    <select id="getRoleByUser" resultType="com.lryepoch.entity.usermanage.RoleVO">
+        select c.id, c.role_name
+        from t_user a, t_user_role b, t_role c
+        where a.deleted=1 and c.deleted=1 and a.id = b.u_id and b.r_id = c.id and a.account=#{account}
+    </select>
+</mapper>

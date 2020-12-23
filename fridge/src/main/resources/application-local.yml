@@ -1,0 +1,102 @@
+server:
+  servlet:
+    context-path: /fridge
+#    session:
+#      timeout: 60m       #session过期时间
+  port: 8081
+
+
+
+#自定义数据源
+datasource:
+  driverName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:3306/fridge?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+  userName: root
+  password: 123456
+  mapperPath: classpath:/mapping/*.xml
+
+
+#druid数据源
+#spring:
+#  datasource:
+#    druid:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/fridge?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+#      username: root
+#      password: 123456
+#      initial-size: 3           #启动程序时，在连接池中初始化多少个连接。10-50已足够
+#      min-idle: 3               #回收空闲连接时，将保证至少有minIdle个连接。与initialSize相同
+#      max-active: 30            #连接池中最多支持多少个活动会话
+#      max-wait: 60000           #程序向连接池中请求连接时,超过maxWait的值(建议100)后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
+#      time-between-eviction-runs-millis: 60000       #检查空闲连接的频率，单位毫秒, 非正整数时表示不进行检查
+#      pool-prepared-statements: false        #为true。缓存通过以下两个方法发起的SQL:public PreparedStatement prepareStatement(String sql)
+                                              #public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
+
+
+
+
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml            #mapper.xml文件位置
+  type-aliases-package: com.lryepoch.entity             #配置别名
+  configuration:
+    map-underscore-to-camel-case: true                  #开启驼峰命名【mybatis默认使属性名和数据库字段名一一对应的，需要开启驼峰命名】
+#    lazy-loading-enabled: true                         #开启延迟加载
+#    aggressive-lazy-loading: false                     #调用即完全加载
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl        #springboot+mybatis整合过程中，开启控制台sql语句打印
+
+
+
+
+#文件服务器
+ftp:
+  host: 127.0.0.1
+  port: 21
+  username: frigroot
+  password: qwer!2344
+  tempPath: ‪C:/Users/260408/Desktop/aimFile/
+  picPath: frigroot
+
+
+path:
+  localPath: http://127.0.0.1:8081/fridge
+  picturePath: ‪C:/Users/260408/Desktop/aimFile/picture/
+  excelPath: ‪C:/Users/260408/Desktop/aimFile/
+  loginUrl: http://127.0.0.1:8081/login
+  indexUrl: http://127.0.0.1:8081/
+
+
+
+#分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true          #  自动分页配置，依据的是入参，如果参数中有pageNum，pageSize分页参数，会自动分页，默认false
+  params: count=countSql
+
+
+
+#日志。logging.level设置日志级别，可以使用root级别和package级别来控制日志的输入级别
+logging:
+  level:
+    root: INFO
+    com.lryepoch.dao: debug
+#   org.hibername.type.description.sql.BasicBinder: trace           #调试输入参数时使用，运行时可注释
+
+
+
+#sql日志处理
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+      properties.hibernate.format_sql: true
+    servlet:
+      multipart:
+        max-file-size: 50MB                #上传文件最大50MB
+        max-request-size: 500MB            #上传文件整个请求不超过500MB

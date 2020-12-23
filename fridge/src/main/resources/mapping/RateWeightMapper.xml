@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lryepoch.dao.RateWeightMapper">
+    <update id="setWeight">
+        update product_rate_weight
+        set level_weight = #{levelWeight}
+            ,noise_weight = #{noiseWeight}
+            ,refri_weight=#{refriWeight}
+            ,total_vol_weight=#{totalVolWeight}
+            ,climate_weight=#{climateWeight}
+            ,price_weight=#{priceWeight}
+            ,warrant_year_weight = #{warrantYearWeight}
+            ,profiling_weight = #{profilingWeight}
+            ,color_weight=#{colorWeight}
+            ,interior_weight=#{interiorWeight}
+            ,light_weight = #{lightWeight}
+            ,ergonomics_weight=#{ergonomicsWeight}
+            ,storage_weight=#{storageWeight}
+            ,operation_weight=#{operationWeight}
+            ,performance_weight=#{performanceWeight}
+            ,economy_weight=#{economyWeight}
+            ,aesthetic_index_weight=#{aestheticIndexWeight}
+            ,ease_weight=#{easeWeight}
+    </update>
+
+    <select id="getRateWeight" resultType="com.lryepoch.entity.product.RateWeight">
+        select level_weight as levelWeight
+                ,noise_weight as noiseWeight
+                ,refri_weight as refriWeight
+                ,total_vol_weight as totalVolWeight
+                ,climate_weight as climateWeight
+                ,price_weight as priceWeight
+                ,warrant_year_weight as warrantYearWeight
+                ,profiling_weight as profilingWeight
+                ,color_weight as colorWeight
+                ,interior_weight as interiorWeight
+                ,light_weight as lightWeight
+                ,ergonomics_weight as ergonomicsWeight
+                ,storage_weight as storageWeight
+                ,operation_weight as operationWeight
+                ,performance_weight as performanceWeight
+                ,economy_weight as economyWeight
+                ,aesthetic_index_weight as aestheticIndexWeight
+                ,ease_weight as easeWeight
+        from product_rate_weight limit 1
+    </select>
+
+</mapper>
