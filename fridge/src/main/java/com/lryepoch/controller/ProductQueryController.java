@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedList;
 import java.util.Map;
@@ -25,13 +26,13 @@ import java.util.stream.Collectors;
  * @date 2020/10/31 14:58
  * @description TODO 提供用户查询产品数据
  */
-@Api
+@Api(description = "产品查询控制器")
 @RestController
 @RequestMapping(value = "/product")
 public class ProductQueryController {
     @Autowired
     private QueryService queryService;
-    @Autowired
+    @Resource
     private InfoQueryMapper infoQueryMapper;
 
     @ApiOperation(value = "获取查询筛选器")

@@ -24,7 +24,7 @@ import java.util.List;
  * @date 2020/10/10 11:13
  * @description TODO
  */
-@Api(description = "冰箱数据的录入和修改控制器")
+@Api(description = "产品增删改控制器")
 @RestController
 @RequestMapping("/data")
 public class DataOperationController {

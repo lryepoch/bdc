@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lryepoch.config.entity.CommonResult;
 import com.lryepoch.config.entity.ResultEnum;
+import com.lryepoch.config.log.PageLog;
 import com.lryepoch.dao.jpa.RoleJpaMapper;
 import com.lryepoch.entity.usermanage.MenuVO;
 import com.lryepoch.entity.usermanage.Role;
@@ -34,7 +35,7 @@ public class RoleController {
 
     @ApiOperation(value = "获取所有角色的页面权限")
     @GetMapping(value = "/getAllRoles")
-//    @PageLog
+    @PageLog
     public CommonResult getAllRoles() {
         List<Role> roles = roleJpaMapper.findAllByDeleted(1);
         JSONArray array = new JSONArray();

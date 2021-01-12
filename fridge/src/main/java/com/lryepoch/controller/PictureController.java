@@ -5,6 +5,7 @@ import com.lryepoch.config.entity.PathEntity;
 import com.lryepoch.config.entity.ResultEnum;
 import com.lryepoch.entity.vo.ProfPictureVO;
 import com.lryepoch.util.FileDecryptionUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,6 +26,7 @@ import java.util.List;
  * @date 2020/11/9 19:19
  * @description TODO 对图片的读取、上传、修改服务
  */
+@Api(description = "图片控制器")
 @RestController
 @RequestMapping("/picture")
 public class PictureController {

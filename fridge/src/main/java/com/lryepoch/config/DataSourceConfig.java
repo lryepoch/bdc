@@ -19,6 +19,10 @@ import javax.sql.DataSource;
  * @author lryepoch
  * @date 2020/9/29 14:35
  * @description TODO 自定义数据库连接配置
+ *
+ * 在使用JDBC作为数据访问技术的时候，Spring Boot为我们定义了PlatformTransactionManager的实现DataSourceTransactionManager的Bean。
+ * 在使用JPA作为数据库访问技术的时候，Spring Boot为我们定义了PlatformTransactionManager的实现JpaBaseConfiguration的Bean。
+ *
  */
 @Configuration
 @MapperScan(basePackages = "com.lryepoch.dao", sqlSessionFactoryRef = "primarySqlSessionFactory")
@@ -43,6 +47,9 @@ public class DataSourceConfig {
         return dataSource;
     }
 
+    /**
+    * 事务管理器
+    */
     @Bean(name = "primaryTransactionManager")
     @Primary
     public DataSourceTransactionManager getTransactionManager() {
@@ -54,6 +61,10 @@ public class DataSourceConfig {
         return new DataSourceTransactionManager(getDataSource());
     }
 
+    /**
+    * 创建SqlSession实例的工厂。所有的MyBatis应用都是以SqlSessionFactory实例为中心，SqlSessionFactory的实例可以通过SqlSessionFactoryBuilder对象来获取。
+     * 有了它以后，顾名思义，就可以通过SqlSession提供的openSession()方法来获取SqlSession实例
+    */
     @Bean(name = "primarySqlSessionFactory")
     @Primary
     public SqlSessionFactory getSqlSessionFactory(@Qualifier("primaryDataSource") DataSource datasource) throws Exception {

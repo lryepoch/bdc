@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Field;
 
 /**
@@ -20,18 +21,17 @@ import java.lang.reflect.Field;
  * @date 2020/10/9 16:18
  * @description TODO
  */
-@Api(description = "评分相关接口")
+@Api(description = "评分控制器")
 @RestController
 @RequestMapping(value = "/rating")
 public class RatingController {
-
     @Autowired
     private RateService rateService;
     @Autowired
     private ProductInfoMapper productInfoMapper;
     @Autowired
     private RatingJpaMapper ratingJpaMapper;
-    @Autowired
+    @Resource
     private RatingQueryMapper ratingQueryMapper;
 
     @ApiOperation(value = "设置计算得分的权重")

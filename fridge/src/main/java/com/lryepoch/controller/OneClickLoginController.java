@@ -20,7 +20,7 @@ import java.io.IOException;
  * @date 2020/10/9 9:13
  * @description TODO
  */
-@Api(description = "单点登录操作")
+@Api(description = "单点登录登出控制器")
 @Controller
 @RequestMapping(value = "/oneClick")
 public class OneClickLoginController {
