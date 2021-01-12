@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * @author lryepoch
  * @date 2020/5/27 15:45
- * @description 返回值的最外层数据结构
+ * @description 通用返回数据类型
  */
 @Data
 @Builder

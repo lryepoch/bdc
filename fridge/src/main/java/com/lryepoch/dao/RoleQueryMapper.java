@@ -27,4 +27,9 @@ public interface RoleQueryMapper {
     void insertRoleMenu(@Param("rid") Integer id, @Param("list") List<MenuDTO> menuDTOList);
 
     List<Menu> getAllMenuByRole(int id);
+
+    /**
+    * 获取所有页面和操作
+    */
+    List<Menu> getAllOperaAndMenu();
 }

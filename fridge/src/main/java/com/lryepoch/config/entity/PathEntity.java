@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author lryepoch
  * @date 2020/10/9 10:29
- * @description TODO
+ * @description TODO 各种请求路径
  */
 @Getter
 @Setter

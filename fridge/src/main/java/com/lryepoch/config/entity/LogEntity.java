@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @author lryepoch
  * @date 2020/10/9 16:13
- * @description TODO
+ * @description TODO 日志实体
  */
 @Entity
 @Data

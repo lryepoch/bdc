@@ -42,4 +42,10 @@
         from t_role a, t_role_menu b, t_menu c
         where a.deleted=1 and c.deleted=1 and a.id = b.r_id and b.m_id=c.id and a.id = #{id}
     </select>
+
+    <select id="getAllOperaAndMenu">
+        select id, description, request_url as requestUrl, parentid, type, deleted
+        from t_menu
+        where deleted = 1
+    </select>
 </mapper>

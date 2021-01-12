@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * @author lryepoch
  * @date 2020/10/31 14:05
- * @description TODO
+ * @description TODO 定义魔法值
  */
 @Getter
 public enum  ServiceEnum {
