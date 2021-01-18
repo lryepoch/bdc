@@ -39,6 +39,7 @@ public class RoleServiceImpl implements RoleService {
     public List<MenuVO> getMenuTreeByRole(Role role) {
         //获取菜单页面集合
         List<MenuDTO> menus = roleQueryMapper.getMenuByRole(role.getId());
+        //处理菜单页面集合并返回页面树
         return getMenuTree(menus);
     }
 
@@ -48,13 +49,13 @@ public class RoleServiceImpl implements RoleService {
      * @date 2020/9/30 17:01
      */
     private List<MenuVO> getMenuTree(List<MenuDTO> menus) {
-        //获取父id是0的所有根节点页面
+        //1.获取父id是0的所有根节点页面
         List<MenuVO> parentNodes = menus.parallelStream().filter(m -> m.getParentId() == 0)
                 .sorted(Comparator.comparingInt(MenuDTO::getId))
                 .map(dto -> (MenuVO) ConverterUtils.toVO(dto, MenuVO.class))
                 .collect(Collectors.toList());
 
-        //将子节点的菜单添加到父节点中，这里默认只有两级，如果是多级可以增加一个已添加标记并迭代list
+        //2.将子节点的菜单添加到父节点中，这里默认只有两级，如果是多级可以增加一个已添加标记并迭代list
         parentNodes.parallelStream().forEach(p ->
                 menus.forEach(m -> {
                     if (m.getParentId().equals(p.getId())) {

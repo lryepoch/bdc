@@ -47,7 +47,7 @@ public class RatingController {
         return CommonResult.success(rateService.getRateWeight());
     }
 
-    @ApiOperation(value = "用户对产品评分", notes = "uid是用户id")
+    @ApiOperation(value = "用户对产品评分", notes = "uid是用户id，productRatingVO id是mid")
     @PostMapping(value = "/productRate")
     public CommonResult rateForModel(@RequestBody ProductRatingVO productRatingVO) throws IllegalAccessException {
         //检测该机型是否存在
@@ -56,7 +56,7 @@ public class RatingController {
             if (ratingJpaMapper.existsByUidAndMid(1, productRatingVO.getId())) {
                 return CommonResult.fail(ResultEnum.ERR.getCode(), "用户已对该机型评价过了");
             }
-            //判断评分分数是否合法
+            //判断评分分数是否合法，利用反射
             Field[] fields = ProductRatingVO.class.getDeclaredFields();
             for (Field field : fields) {
                 if (field.getType() == Double.class) {

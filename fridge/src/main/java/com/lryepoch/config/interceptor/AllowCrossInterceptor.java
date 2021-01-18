@@ -36,7 +36,7 @@ public class AllowCrossInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        if (1==1){return true;}
+        if (1==1){return true;}
         response.setContentType("application/json; chartset=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         if ("OPTIONS".equals(request.getMethod())) {

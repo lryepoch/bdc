@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.lryepoch.config.entity.CommonResult;
 import com.lryepoch.config.entity.ResultEnum;
-import com.lryepoch.config.log.PageLog;
 import com.lryepoch.dao.InfoQueryMapper;
 import com.lryepoch.entity.dto.ProductListDTO;
 import com.lryepoch.entity.vo.InfoFilterVO;
@@ -53,7 +52,7 @@ public class ProductQueryController {
 
     @ApiOperation(value = "根据筛选条件获取产品列表")
     @PostMapping(value = "/infoList")
-    @PageLog
+//    @PageLog
     public CommonResult getProductList(@RequestBody InfoFilterVO infoFilterVO, HttpServletRequest request){
         return queryService.getProductList(infoFilterVO, request);
     }
@@ -87,7 +86,7 @@ public class ProductQueryController {
 
     @ApiOperation(value = "获取产品统计数据")
     @GetMapping(value = "/getProductTotal")
-    @PageLog
+//    @PageLog
     public CommonResult getProductTotal(@RequestBody InfoFilterVO infoFilterVO){
         return queryService.getProductTotal(infoFilterVO);
     }
@@ -117,7 +116,7 @@ public class ProductQueryController {
 
     @ApiOperation(value = "获取全部爬取数据", notes = "根据更新时间倒序排")
     @PostMapping(value = "/getReptileList")
-    @PageLog
+//    @PageLog
     public CommonResult getReptileList(@RequestBody InfoFilterVO infoFilterVO){
         return queryService.getReptileProductList(infoFilterVO);
     }

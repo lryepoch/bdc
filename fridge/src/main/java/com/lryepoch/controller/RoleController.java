@@ -22,7 +22,7 @@ import java.util.Optional;
 /**
  * @author lryepoch
  * @date 2020/9/29 15:37
- * @description TODO
+ * @description TODO 角色和页面权限挂钩
  */
 @Api(description = "角色控制器")
 @RestController
@@ -35,7 +35,7 @@ public class RoleController {
 
     @ApiOperation(value = "获取所有角色的页面权限")
     @GetMapping(value = "/getAllRoles")
-    @PageLog
+//    @PageLog
     public CommonResult getAllRoles() {
         List<Role> roles = roleJpaMapper.findAllByDeleted(1);
         JSONArray array = new JSONArray();

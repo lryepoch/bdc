@@ -4,7 +4,7 @@
     <select id="getMenuByRole" resultType="com.lryepoch.entity.usermanage.MenuDTO">
         select c.id, c.description as name, c.parent_id
         from t_role a, t_role_menu b, t_menu c
-        where a.deleted=0 and c.deleted=0 and a.id=b.r_id and b.m_id=c.id and a.id=#{rid}
+        where a.deleted=1 and c.deleted=1 and a.id=b.r_id and b.m_id=c.id and a.id=#{rid}
     </select>
 
     <delete id="deleteRoleMenu">
@@ -43,8 +43,8 @@
         where a.deleted=1 and c.deleted=1 and a.id = b.r_id and b.m_id=c.id and a.id = #{id}
     </select>
 
-    <select id="getAllOperaAndMenu">
-        select id, description, request_url as requestUrl, parentid, type, deleted
+    <select id="getAllOperaAndMenu" resultType="com.lryepoch.entity.usermanage.Menu">
+        select id, description, request_url as requestUrl, parent_id, type, deleted
         from t_menu
         where deleted = 1
     </select>

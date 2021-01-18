@@ -80,7 +80,7 @@ public class UserController {
 
     @ApiOperation(value = "获取所有用户列表")
     @GetMapping(value = "getAllUser")
-    @PageLog
+//    @PageLog
     public CommonResult getAllUser() {
         return CommonResult.success(userService.getAllUser());
     }

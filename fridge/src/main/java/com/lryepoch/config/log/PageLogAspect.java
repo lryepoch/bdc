@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * @author lryepoch
  * @date 2020/10/9 9:00
- * @description TODO 页面访问日志注解切面
+ * @description TODO 页面访问日志注解切面（需要在单点登录中设置用户信息）
  */
 @Aspect
 @Component

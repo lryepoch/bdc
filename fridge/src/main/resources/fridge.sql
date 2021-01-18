@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2020-12-18 13:56:20
+Date: 2021-01-18 16:02:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -375,11 +375,20 @@ CREATE TABLE `product_info` (
   `warranty_years` double(100,2) NOT NULL DEFAULT '0.00' COMMENT '报修年限',
   `deleted` int(11) DEFAULT '1' COMMENT '删除（1：启用，0：禁用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_info
 -- ----------------------------
+INSERT INTO `product_info` VALUES ('1', '海尔官网', '海尔', 'BCD-656WDPT', '钣金', '炫金', '2021-01-18 14:25:24', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('2', '海尔官网', '海尔', 'BCD-78L/现代银', '钣金', '炫金', '2021-01-18 14:36:00', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('3', '参数表', '晶弘', 'BC-96L/白色', '钣金', '炫金', '2021-01-18 14:37:13', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('4', '参数表', '晶弘', 'BC-963L/白色', '钣金', '炫金', '2021-01-18 14:37:20', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('5', '参数表', '晶弘', 'BC-134/白色', '钣金', '炫金', '2021-01-18 14:37:24', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('6', '参数表', '美的', 'BC-yu', '钣金', '炫金', '2021-01-18 14:43:03', '三开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '0');
+INSERT INTO `product_info` VALUES ('7', '参数表', '美的', 'BC-yu', '钣金', '炫金', '2021-01-18 14:38:44', '对开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('8', '参数表', '美的', 'BC-y12u', '钣金', '炫金', '2021-01-18 15:28:26', '三开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
+INSERT INTO `product_info` VALUES ('9', '参数表', '海尔', 'BCD-EWOR', '钣金', '炫金', '2021-01-18 15:29:31', '三开门', '656.00', '416.00', '240.00', '0.00', '2', '908.00', '1790.00', '738.00', '666.00', '660.00', '1790.00', '0.00', '0.00', '0.00', null, '105.00', 'SN.N.ST', '新国标2级', '单循环系统', '1.00', '8.00', '4.00', '变频', '风冷', '自然对流', 'R600a', '220V/50HZ', '~', '~', '~', 'KMI', '8', '3', '0', '8', '3', '0', '0', '0', 'led灯', '0', '0', '有', 'LED数码显示', '有', null, '电脑', '有', '变频，大容积，风冷无霜', '无', '光波杀菌', '3.00', '1');
 
 -- ----------------------------
 -- Table structure for product_price
@@ -392,13 +401,31 @@ CREATE TABLE `product_price` (
   `distribution_channel` varchar(255) DEFAULT NULL COMMENT '销售渠道',
   `active_time` datetime NOT NULL COMMENT '上市时间',
   `update_time` datetime NOT NULL COMMENT '更新时间',
-  `deleted` int(11) NOT NULL DEFAULT '0' COMMENT '删除（1：启用，0：禁用）',
+  `deleted` int(11) NOT NULL DEFAULT '1' COMMENT '删除（1：启用，0：禁用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_price
 -- ----------------------------
+INSERT INTO `product_price` VALUES ('1', 'BCD-656WDPT', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:25:24', '1');
+INSERT INTO `product_price` VALUES ('2', 'BCD-656WDPT', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:25:24', '1');
+INSERT INTO `product_price` VALUES ('3', 'BCD-78L/现代银', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:36:00', '1');
+INSERT INTO `product_price` VALUES ('4', 'BCD-78L/现代银', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:36:00', '1');
+INSERT INTO `product_price` VALUES ('5', 'BC-96L/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:13', '1');
+INSERT INTO `product_price` VALUES ('6', 'BC-96L/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:13', '1');
+INSERT INTO `product_price` VALUES ('7', 'BC-963L/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:20', '1');
+INSERT INTO `product_price` VALUES ('8', 'BC-963L/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:20', '1');
+INSERT INTO `product_price` VALUES ('9', 'BC-134/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:24', '1');
+INSERT INTO `product_price` VALUES ('10', 'BC-134/白色', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:24', '1');
+INSERT INTO `product_price` VALUES ('11', 'BC-1341', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:32', '1');
+INSERT INTO `product_price` VALUES ('12', 'BC-1341', '599.00', '京东', '2019-12-11 00:00:00', '2021-01-18 14:37:32', '1');
+INSERT INTO `product_price` VALUES ('15', 'BC-yu', '1599.00', '淘宝', '2019-12-11 00:00:00', '2021-01-18 14:43:03', '0');
+INSERT INTO `product_price` VALUES ('16', 'BC-yu', '1999.00', '天猫', '2019-12-11 00:00:00', '2021-01-18 14:43:03', '0');
+INSERT INTO `product_price` VALUES ('17', 'BC-y12u', '1599.00', '淘宝', '2019-12-11 00:00:00', '2021-01-18 15:28:26', '1');
+INSERT INTO `product_price` VALUES ('18', 'BC-y12u', '1999.00', '天猫', '2019-12-11 00:00:00', '2021-01-18 15:28:26', '1');
+INSERT INTO `product_price` VALUES ('19', 'BCD-EWOR', '1599.00', '淘宝', '2019-12-11 00:00:00', '2021-01-18 15:29:31', '1');
+INSERT INTO `product_price` VALUES ('20', 'BCD-EWOR', '1999.00', '天猫', '2019-12-11 00:00:00', '2021-01-18 15:29:31', '1');
 
 -- ----------------------------
 -- Table structure for product_professional_parameters
@@ -415,92 +442,94 @@ CREATE TABLE `product_professional_parameters` (
   `suction_pipe_specification` varchar(50) DEFAULT NULL COMMENT '吸气管规格（管外@径*壁厚）',
   `exhaust_pipe_specification` varchar(50) DEFAULT NULL COMMENT '排气管规格（管外@径*壁厚）',
   `process_pipe_specification` varchar(50) DEFAULT NULL COMMENT '工艺管规格（管外@径*壁厚）',
-  `capacity` varchar(255) DEFAULT NULL COMMENT '电容',
-  `refrigerating_output` varchar(255) DEFAULT NULL COMMENT 'z制冷量',
-  `condenser_picture` varchar(255) DEFAULT NULL COMMENT '冷凝器图片',
-  `condenser_type` varchar(255) DEFAULT NULL COMMENT 'l冷凝器形式',
-  `condenser_heat_exchange` varchar(255) DEFAULT NULL COMMENT '换热管规格（材质*外径*长度）',
-  `condenser_inside_vol` varchar(255) DEFAULT NULL COMMENT 'n内容积',
-  `condenser_heat_transfer` varchar(255) DEFAULT NULL COMMENT 'c传热面积（外）',
-  `condenser_dry_filter` varchar(255) DEFAULT NULL COMMENT '干燥过滤器规格（材质/外径*长度*壁厚）',
-  `anticoagulant_heat_exchange` varchar(255) DEFAULT NULL COMMENT '换热管规格（材质/外径*长度*壁厚）',
-  `anticoagulant_location` varchar(255) DEFAULT NULL COMMENT '防凝管位置',
-  `muffler_picture` varchar(255) DEFAULT NULL COMMENT '回气管图片',
-  `muffler_type` varchar(255) DEFAULT NULL COMMENT '回气管形式（锡焊/穿焊/铝箔贴附）',
-  `muffler_heat_exchange` varchar(255) DEFAULT NULL,
-  `muffler_capillary` varchar(255) DEFAULT NULL,
-  `muffler_effictive_exchange_length` double DEFAULT NULL,
-  `refrigerated_capillary_specification` varchar(255) DEFAULT NULL,
-  `variable_capillary_specification` varchar(255) DEFAULT NULL,
-  `freezing_capillary_specification` varchar(255) DEFAULT NULL,
-  `refri_evaporator_picture` varchar(255) DEFAULT NULL,
-  `refri_evaporator_type` varchar(255) DEFAULT NULL,
-  `refri_evaporator_heat_exchange` varchar(255) DEFAULT NULL,
-  `refri_evaporator_fin_specification` varchar(255) DEFAULT NULL,
-  `refri_evaporator_fin_distance` varchar(255) DEFAULT NULL,
-  `refri_evaporator_inside_vol` varchar(255) DEFAULT NULL,
-  `refri_evaporator_heat_transfer` varchar(255) DEFAULT NULL,
-  `refri_evaporator_reservoir` varchar(255) DEFAULT NULL,
-  `refri_evaporator_sort_type` varchar(255) DEFAULT NULL,
-  `refri_evaporator_pipe_distance` double DEFAULT NULL,
-  `variable_evaporator_picture` varchar(255) DEFAULT NULL,
-  `variable_evaporator_type` varchar(255) DEFAULT NULL,
-  `variable_evaporator_heat_exchange` varchar(255) DEFAULT NULL,
-  `variable_evaporator_fin` varchar(255) DEFAULT NULL,
-  `variable_evaporator_fin_distance` double DEFAULT NULL,
-  `variable_evaporator_inside_vol` varchar(255) DEFAULT NULL,
-  `variable_evaporator_heat_transfer` varchar(255) DEFAULT NULL,
-  `variable_evaporator_reservoir` varchar(255) DEFAULT NULL,
-  `variable_evaporator_sort_type` varchar(255) DEFAULT NULL,
-  `variable_evaporator_pipe_distance` double DEFAULT NULL,
-  `freezing_evaporator_picture` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_type` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_heat_exchange` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_fin` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_fin_distance` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_inside_vol` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_heat_transfer` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_reservoir` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_sort_type` varchar(255) DEFAULT NULL,
-  `freezing_evaporator_pipe_distance` double DEFAULT NULL,
-  `exhaust_connection_pipe_picture` varchar(255) DEFAULT NULL,
-  `exhaust_connection_heat_transfer` varchar(255) DEFAULT NULL,
-  `variable_deforst_heater_picture` varchar(255) DEFAULT NULL,
-  `variable_deforst_heater_power` varchar(255) DEFAULT NULL,
-  `freezing_deforst_heater_picture` varchar(255) DEFAULT NULL,
-  `freezing_deforst_heater_power` varchar(255) DEFAULT NULL,
-  `refri_fan_picture` varchar(255) DEFAULT NULL,
-  `refri_fan_manufacturer_model` varchar(255) DEFAULT NULL,
-  `refri_fan_blowing_rate` varchar(255) DEFAULT NULL,
-  `variable_fan_picture` varchar(255) DEFAULT NULL,
-  `variable_fan_manufacturer_model` varchar(255) DEFAULT NULL,
-  `variable_fan_blowing_rate` varchar(255) DEFAULT NULL,
-  `freezing_fan_picture` varchar(255) DEFAULT NULL,
-  `freezing_fan_manufacturer_model` varchar(255) DEFAULT NULL,
-  `freezing_fan_blowing_rate` varchar(255) DEFAULT NULL,
-  `foaming_thickness1` varchar(255) DEFAULT NULL COMMENT '冷藏箱顶部泡层',
-  `foaming_thickness2` varchar(255) DEFAULT NULL COMMENT '冷藏左右泡层',
-  `foaming_thickness3` varchar(255) DEFAULT NULL COMMENT '冷藏背部泡层',
-  `foaming_thickness4` varchar(255) DEFAULT NULL,
-  `foaming_thickness5` varchar(255) DEFAULT NULL,
-  `foaming_thickness6` varchar(255) DEFAULT NULL,
-  `foaming_thickness7` varchar(255) DEFAULT NULL,
-  `foaming_thickness8` varchar(255) DEFAULT NULL,
-  `foaming_thickness9` varchar(255) DEFAULT NULL,
-  `foaming_thickness10` varchar(255) DEFAULT NULL,
-  `foaming_thickness11` varchar(255) DEFAULT NULL,
-  `foaming_thickness12` varchar(255) DEFAULT NULL,
-  `foaming_thickness13` varchar(255) DEFAULT NULL,
-  `appearance_distance1` varchar(255) DEFAULT NULL COMMENT '箱体与门体间隙',
-  `appearance_distance2` varchar(255) DEFAULT NULL COMMENT '门体与门体间隙',
-  `appearance_distance3` varchar(255) DEFAULT NULL COMMENT '铰链盖与箱体间隙',
-  `deleted` int(11) DEFAULT NULL,
+  `capacity` varchar(50) DEFAULT NULL COMMENT '电容',
+  `refrigerating_output` varchar(50) DEFAULT NULL COMMENT 'z制冷量',
+  `condenser_picture` varchar(50) DEFAULT NULL COMMENT '冷凝器图片',
+  `condenser_type` varchar(50) DEFAULT NULL COMMENT 'l冷凝器形式',
+  `condenser_heat_exchange` varchar(50) DEFAULT NULL COMMENT '换热管规格（材质*外径*长度）',
+  `condenser_inside_vol` varchar(50) DEFAULT NULL COMMENT 'n内容积',
+  `condenser_heat_transfer` varchar(50) DEFAULT NULL COMMENT 'c传热面积（外）',
+  `condenser_dry_filter` varchar(50) DEFAULT NULL COMMENT '干燥过滤器规格（材质/外径*长度*壁厚）',
+  `anticoagulant_heat_exchange` varchar(50) DEFAULT NULL COMMENT '换热管规格（材质/外径*长度*壁厚）',
+  `anticoagulant_location` varchar(50) DEFAULT NULL COMMENT '防凝管位置',
+  `muffler_picture` varchar(50) DEFAULT NULL COMMENT '回气管图片',
+  `muffler_type` varchar(50) DEFAULT NULL COMMENT '回气管形式（锡焊/穿焊/铝箔贴附）',
+  `muffler_heat_exchange` varchar(50) DEFAULT NULL,
+  `muffler_capillary` varchar(50) DEFAULT NULL,
+  `muffler_effictive_exchange_length` varchar(50) DEFAULT NULL,
+  `refrigerated_capillary_specification` varchar(50) DEFAULT NULL,
+  `variable_capillary_specification` varchar(50) DEFAULT NULL,
+  `freezing_capillary_specification` varchar(50) DEFAULT NULL,
+  `refri_evaporator_picture` varchar(50) DEFAULT NULL,
+  `refri_evaporator_type` varchar(50) DEFAULT NULL,
+  `refri_evaporator_heat_exchange` varchar(50) DEFAULT NULL,
+  `refri_evaporator_fin_specification` varchar(50) DEFAULT NULL,
+  `refri_evaporator_fin_distance` varchar(50) DEFAULT NULL,
+  `refri_evaporator_inside_vol` varchar(50) DEFAULT NULL,
+  `refri_evaporator_heat_transfer` varchar(50) DEFAULT NULL,
+  `refri_evaporator_reservoir` varchar(50) DEFAULT NULL,
+  `refri_evaporator_sort_type` varchar(50) DEFAULT NULL,
+  `refri_evaporator_pipe_distance` varchar(50) DEFAULT NULL,
+  `variable_evaporator_picture` varchar(50) DEFAULT NULL,
+  `variable_evaporator_type` varchar(50) DEFAULT NULL,
+  `variable_evaporator_heat_exchange` varchar(50) DEFAULT NULL,
+  `variable_evaporator_fin` varchar(50) DEFAULT NULL,
+  `variable_evaporator_fin_distance` varchar(50) DEFAULT NULL,
+  `variable_evaporator_inside_vol` varchar(50) DEFAULT NULL,
+  `variable_evaporator_heat_transfer` varchar(50) DEFAULT NULL,
+  `variable_evaporator_reservoir` varchar(50) DEFAULT NULL,
+  `variable_evaporator_sort_type` varchar(50) DEFAULT NULL,
+  `variable_evaporator_pipe_distance` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_picture` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_type` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_heat_exchange` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_fin` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_fin_distance` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_inside_vol` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_heat_transfer` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_reservoir` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_sort_type` varchar(50) DEFAULT NULL,
+  `freezing_evaporator_pipe_distance` varchar(50) DEFAULT NULL,
+  `exhaust_connection_pipe_picture` varchar(50) DEFAULT NULL,
+  `exhaust_connection_heat_transfer` varchar(50) DEFAULT NULL,
+  `variable_deforst_heater_picture` varchar(50) DEFAULT NULL,
+  `variable_deforst_heater_power` varchar(50) DEFAULT NULL,
+  `freezing_deforst_heater_picture` varchar(50) DEFAULT NULL,
+  `freezing_deforst_heater_power` varchar(50) DEFAULT NULL,
+  `refri_fan_picture` varchar(50) DEFAULT NULL,
+  `refri_fan_manufacturer_model` varchar(50) DEFAULT NULL,
+  `refri_fan_blowing_rate` varchar(50) DEFAULT NULL,
+  `variable_fan_picture` varchar(50) DEFAULT NULL,
+  `variable_fan_manufacturer_model` varchar(50) DEFAULT NULL,
+  `variable_fan_blowing_rate` varchar(50) DEFAULT NULL,
+  `freezing_fan_picture` varchar(50) DEFAULT NULL,
+  `freezing_fan_manufacturer_model` varchar(50) DEFAULT NULL,
+  `freezing_fan_blowing_rate` varchar(50) DEFAULT NULL,
+  `foaming_thickness1` varchar(50) DEFAULT NULL COMMENT '冷藏箱顶部泡层',
+  `foaming_thickness2` varchar(50) DEFAULT NULL COMMENT '冷藏左右泡层',
+  `foaming_thickness3` varchar(50) DEFAULT NULL COMMENT '冷藏背部泡层',
+  `foaming_thickness4` varchar(50) DEFAULT NULL,
+  `foaming_thickness5` varchar(50) DEFAULT NULL,
+  `foaming_thickness6` varchar(50) DEFAULT NULL,
+  `foaming_thickness7` varchar(50) DEFAULT NULL,
+  `foaming_thickness8` varchar(50) DEFAULT NULL,
+  `foaming_thickness9` varchar(50) DEFAULT NULL,
+  `foaming_thickness10` varchar(50) DEFAULT NULL,
+  `foaming_thickness11` varchar(50) DEFAULT NULL,
+  `foaming_thickness12` varchar(50) DEFAULT NULL,
+  `foaming_thickness13` varchar(50) DEFAULT NULL,
+  `appearance_distance1` varchar(50) DEFAULT NULL COMMENT '箱体与门体间隙',
+  `appearance_distance2` varchar(50) DEFAULT NULL COMMENT '门体与门体间隙',
+  `appearance_distance3` varchar(50) DEFAULT NULL COMMENT '铰链盖与箱体间隙',
+  `deleted` int(2) DEFAULT '1',
   PRIMARY KEY (`id`,`model`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_professional_parameters
 -- ----------------------------
+INSERT INTO `product_professional_parameters` VALUES ('6', 'BC-yu', 'WETFWQA', 'R', 'WTQ', 'WER', 'WE', 'WERW', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', '0');
+INSERT INTO `product_professional_parameters` VALUES ('7', 'BC-12yu', 'WETFWQA', 'R', 'WTQ', 'WER', 'WE', 'WERW', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', 'str', '1');
 
 -- ----------------------------
 -- Table structure for product_rate_weight
@@ -532,7 +561,7 @@ CREATE TABLE `product_rate_weight` (
 -- ----------------------------
 -- Records of product_rate_weight
 -- ----------------------------
-INSERT INTO `product_rate_weight` VALUES ('1', '0', '0', '0', '0', '0.2', '0', '0', '0', '0.3', '0', '0', '0.1', '0.5', '0', '0', '0.1', '0.1', '0.1');
+INSERT INTO `product_rate_weight` VALUES ('1', '0.46', '0.29', '0.15', '0.05', '0.05', '0.9', '0.1', '0.4', '0.4', '0.1', '0.1', '0.1', '0.6', '0.3', '0.04', '0.25', '0.43', '0.28');
 
 -- ----------------------------
 -- Table structure for product_rating
@@ -607,55 +636,55 @@ CREATE TABLE `t_menu` (
 -- ----------------------------
 -- Records of t_menu
 -- ----------------------------
-INSERT INTO `t_menu` VALUES ('1', '首页', '/home', null, '0', '1', '0');
-INSERT INTO `t_menu` VALUES ('2', '首页待确认数据', '/product/getReptileIndexList', null, '7', '2', '0');
-INSERT INTO `t_menu` VALUES ('3', '首页最新数据', '/product/infoIndexList', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('4', '首页统计图', '/product/infoListIndexData', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('5', '数据管理', null, null, '0', '1', '0');
-INSERT INTO `t_menu` VALUES ('6', '数据维护', '/dataMaintain', null, '5', '1', '0');
-INSERT INTO `t_menu` VALUES ('7', '数据确认', '/dataConfirm', null, '5', '1', '0');
-INSERT INTO `t_menu` VALUES ('8', '获取筛选器', '/product/getFilter', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('9', '录入基础表数据', '/data/infoInsert', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('10', '更新基础表数据', '/data/infoUpdate', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('11', '插入专业表数据', '/data/profParamInsert', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('12', '更新专业表数据', '/data/profParamUpdate', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('13', 'excel更新基础表数据', '/data/upload/', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('14', 'excel模板下载', '/data/download/', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('15', '删除产品', '/data/deleteProduct', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('16', '更新爬虫基础表', '/data/updateReptileData', null, '7', '2', '0');
-INSERT INTO `t_menu` VALUES ('17', '确认爬虫表数据', '/data/ensureReptileData', null, '7', '2', '0');
-INSERT INTO `t_menu` VALUES ('18', '数据展示', '/dataShow', null, '0', '1', '0');
-INSERT INTO `t_menu` VALUES ('19', '获取产品列表', '/product/infoList', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('20', '获取产品详细信息', '/product/productDetail', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('21', '获取爬虫表信息', '/product/reptileDetail', null, '7', '2', '0');
-INSERT INTO `t_menu` VALUES ('22', '展示页统计数据图', '/product/infoListTotalData', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('23', '获取对比信息', '/product/productContrast', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('24', '产品评价', '/rating/productRate', null, '18', '2', '0');
-INSERT INTO `t_menu` VALUES ('25', '图片上传', '/picture/upload', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('26', '校验机型存在', '/product/judgeModel', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('27', '系统管理', null, null, '0', '1', '0');
-INSERT INTO `t_menu` VALUES ('28', '权重管理', '/weight', null, '27', '1', '0');
-INSERT INTO `t_menu` VALUES ('29', '角色管理', '/roles', null, '27', '1', '0');
-INSERT INTO `t_menu` VALUES ('30', '用户管理', '/groups', null, '27', '1', '0');
-INSERT INTO `t_menu` VALUES ('31', '添加用户', '/user/addUser', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('32', '修改用户', '/user/modifyUser', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('33', '删除用户', '/user/deleteUser', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('34', '获取所有用户列表', '/user/getAllUser', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('35', '获取当前用户的权限树', '/user/getMenuTree', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('36', '根据用户姓名或者邮箱查询用户', '/user/getSearchUser', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('37', '获取当前用户的角色', '/user/getUserRole', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('38', '获取当前用户的角色', '/user/getUserRole', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('39', '修改用户对应的角色', '/user/modifyUserRole', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('40', '新增角色及权限', '/role/addRole', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('41', '删除角色', '/role/delRole', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('42', '获取所有的角色列表', '/role/getAllRoles', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('43', '获取角色拥有的权限树', '/role/getRoleMenuTree', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('44', '修改角色及权限', '/role/modifyRole', null, '30', '2', '0');
-INSERT INTO `t_menu` VALUES ('45', '获取当前用户信息', '/user/getCurrentUser', null, '1', '2', '0');
-INSERT INTO `t_menu` VALUES ('46', '数据维护页面产品列表', '/product/infoMaintainList', null, '6', '2', '0');
-INSERT INTO `t_menu` VALUES ('47', '待确认页面获取产品列表', '/product/getReptileList', null, '7', '2', '0');
-INSERT INTO `t_menu` VALUES ('48', '设置计算得分的权重', '/rating/setWeight', null, '28', '2', '0');
-INSERT INTO `t_menu` VALUES ('49', '获取得分的权重', '/rating/getWeight', null, '28', '2', '0');
+INSERT INTO `t_menu` VALUES ('1', '首页', '/home', null, '0', '1', '1');
+INSERT INTO `t_menu` VALUES ('2', '首页待确认数据', '/product/getReptileIndexList', null, '7', '2', '1');
+INSERT INTO `t_menu` VALUES ('3', '首页最新数据', '/product/infoIndexList', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('4', '首页统计图', '/product/infoListIndexData', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('5', '数据管理', null, null, '0', '1', '1');
+INSERT INTO `t_menu` VALUES ('6', '数据维护', '/dataMaintain', null, '5', '1', '1');
+INSERT INTO `t_menu` VALUES ('7', '数据确认', '/dataConfirm', null, '5', '1', '1');
+INSERT INTO `t_menu` VALUES ('8', '获取筛选器', '/product/getFilter', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('9', '录入基础表数据', '/data/infoInsert', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('10', '更新基础表数据', '/data/infoUpdate', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('11', '插入专业表数据', '/data/profParamInsert', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('12', '更新专业表数据', '/data/profParamUpdate', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('13', 'excel更新基础表数据', '/data/upload/', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('14', 'excel模板下载', '/data/download/', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('15', '删除产品', '/data/deleteProduct', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('16', '更新爬虫基础表', '/data/updateReptileData', null, '7', '2', '1');
+INSERT INTO `t_menu` VALUES ('17', '确认爬虫表数据', '/data/ensureReptileData', null, '7', '2', '1');
+INSERT INTO `t_menu` VALUES ('18', '数据展示', '/dataShow', null, '0', '1', '1');
+INSERT INTO `t_menu` VALUES ('19', '获取产品列表', '/product/infoList', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('20', '获取产品详细信息', '/product/productDetail', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('21', '获取爬虫表信息', '/product/reptileDetail', null, '7', '2', '1');
+INSERT INTO `t_menu` VALUES ('22', '展示页统计数据图', '/product/infoListTotalData', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('23', '获取对比信息', '/product/productContrast', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('24', '产品评价', '/rating/productRate', null, '18', '2', '1');
+INSERT INTO `t_menu` VALUES ('25', '图片上传', '/picture/upload', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('26', '校验机型存在', '/product/judgeModel', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('27', '系统管理', null, null, '0', '1', '1');
+INSERT INTO `t_menu` VALUES ('28', '权重管理', '/weight', null, '27', '1', '1');
+INSERT INTO `t_menu` VALUES ('29', '角色管理', '/roles', null, '27', '1', '1');
+INSERT INTO `t_menu` VALUES ('30', '用户管理', '/groups', null, '27', '1', '1');
+INSERT INTO `t_menu` VALUES ('31', '添加用户', '/user/addUser', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('32', '修改用户', '/user/modifyUser', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('33', '删除用户', '/user/deleteUser', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('34', '获取所有用户列表', '/user/getAllUser', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('35', '获取当前用户的权限树', '/user/getMenuTree', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('36', '根据用户姓名或者邮箱查询用户', '/user/getSearchUser', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('37', '获取当前用户的角色', '/user/getUserRole', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('38', '获取当前用户的角色', '/user/getUserRole', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('39', '修改用户对应的角色', '/user/modifyUserRole', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('40', '新增角色及权限', '/role/addRole', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('41', '删除角色', '/role/delRole', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('42', '获取所有的角色列表', '/role/getAllRoles', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('43', '获取角色拥有的权限树', '/role/getRoleMenuTree', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('44', '修改角色及权限', '/role/modifyRole', null, '30', '2', '1');
+INSERT INTO `t_menu` VALUES ('45', '获取当前用户信息', '/user/getCurrentUser', null, '1', '2', '1');
+INSERT INTO `t_menu` VALUES ('46', '数据维护页面产品列表', '/product/infoMaintainList', null, '6', '2', '1');
+INSERT INTO `t_menu` VALUES ('47', '待确认页面获取产品列表', '/product/getReptileList', null, '7', '2', '1');
+INSERT INTO `t_menu` VALUES ('48', '设置计算得分的权重', '/rating/setWeight', null, '28', '2', '1');
+INSERT INTO `t_menu` VALUES ('49', '获取得分的权重', '/rating/getWeight', null, '28', '2', '1');
 
 -- ----------------------------
 -- Table structure for t_role
@@ -667,16 +696,14 @@ CREATE TABLE `t_role` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` int(11) NOT NULL DEFAULT '1' COMMENT '启用标志(1：启用，0：禁用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES ('1', '超级管理员', '2020-09-30 10:41:06', '1');
-INSERT INTO `t_role` VALUES ('2', '111', '2020-10-08 17:01:09', '1');
-INSERT INTO `t_role` VALUES ('3', '111', '2020-10-08 17:00:54', '1');
-INSERT INTO `t_role` VALUES ('4', 'rrr', '2020-10-08 16:41:54', '1');
-INSERT INTO `t_role` VALUES ('5', null, '2020-10-08 17:03:22', '0');
+INSERT INTO `t_role` VALUES ('1', '超级管理员', '2021-01-18 10:57:15', '1');
+INSERT INTO `t_role` VALUES ('2', '普通用户', '2021-01-18 10:17:32', '0');
+INSERT INTO `t_role` VALUES ('3', '测试用户', '2021-01-18 10:17:59', '0');
 
 -- ----------------------------
 -- Table structure for t_role_menu
@@ -687,11 +714,60 @@ CREATE TABLE `t_role_menu` (
   `r_id` int(11) DEFAULT NULL,
   `m_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_role_menu
 -- ----------------------------
+INSERT INTO `t_role_menu` VALUES ('1', '1', '1');
+INSERT INTO `t_role_menu` VALUES ('2', '1', '2');
+INSERT INTO `t_role_menu` VALUES ('3', '1', '3');
+INSERT INTO `t_role_menu` VALUES ('4', '1', '4');
+INSERT INTO `t_role_menu` VALUES ('5', '1', '5');
+INSERT INTO `t_role_menu` VALUES ('6', '1', '6');
+INSERT INTO `t_role_menu` VALUES ('7', '1', '7');
+INSERT INTO `t_role_menu` VALUES ('8', '1', '8');
+INSERT INTO `t_role_menu` VALUES ('9', '1', '9');
+INSERT INTO `t_role_menu` VALUES ('10', '1', '10');
+INSERT INTO `t_role_menu` VALUES ('11', '1', '11');
+INSERT INTO `t_role_menu` VALUES ('12', '1', '12');
+INSERT INTO `t_role_menu` VALUES ('13', '1', '13');
+INSERT INTO `t_role_menu` VALUES ('14', '1', '14');
+INSERT INTO `t_role_menu` VALUES ('15', '1', '15');
+INSERT INTO `t_role_menu` VALUES ('16', '1', '16');
+INSERT INTO `t_role_menu` VALUES ('17', '1', '17');
+INSERT INTO `t_role_menu` VALUES ('18', '1', '18');
+INSERT INTO `t_role_menu` VALUES ('19', '1', '19');
+INSERT INTO `t_role_menu` VALUES ('20', '1', '20');
+INSERT INTO `t_role_menu` VALUES ('21', '1', '21');
+INSERT INTO `t_role_menu` VALUES ('22', '1', '22');
+INSERT INTO `t_role_menu` VALUES ('23', '1', '23');
+INSERT INTO `t_role_menu` VALUES ('24', '1', '24');
+INSERT INTO `t_role_menu` VALUES ('25', '1', '25');
+INSERT INTO `t_role_menu` VALUES ('26', '1', '26');
+INSERT INTO `t_role_menu` VALUES ('27', '1', '27');
+INSERT INTO `t_role_menu` VALUES ('28', '1', '28');
+INSERT INTO `t_role_menu` VALUES ('29', '1', '29');
+INSERT INTO `t_role_menu` VALUES ('30', '1', '30');
+INSERT INTO `t_role_menu` VALUES ('31', '1', '31');
+INSERT INTO `t_role_menu` VALUES ('32', '1', '32');
+INSERT INTO `t_role_menu` VALUES ('33', '1', '33');
+INSERT INTO `t_role_menu` VALUES ('34', '1', '34');
+INSERT INTO `t_role_menu` VALUES ('35', '1', '35');
+INSERT INTO `t_role_menu` VALUES ('36', '1', '36');
+INSERT INTO `t_role_menu` VALUES ('37', '1', '37');
+INSERT INTO `t_role_menu` VALUES ('38', '1', '38');
+INSERT INTO `t_role_menu` VALUES ('39', '1', '39');
+INSERT INTO `t_role_menu` VALUES ('40', '1', '40');
+INSERT INTO `t_role_menu` VALUES ('41', '1', '41');
+INSERT INTO `t_role_menu` VALUES ('42', '1', '42');
+INSERT INTO `t_role_menu` VALUES ('43', '1', '43');
+INSERT INTO `t_role_menu` VALUES ('44', '1', '44');
+INSERT INTO `t_role_menu` VALUES ('45', '1', '45');
+INSERT INTO `t_role_menu` VALUES ('46', '1', '46');
+INSERT INTO `t_role_menu` VALUES ('47', '1', '47');
+INSERT INTO `t_role_menu` VALUES ('48', '1', '48');
+INSERT INTO `t_role_menu` VALUES ('49', '1', '49');
 
 -- ----------------------------
 -- Table structure for t_user
@@ -706,7 +782,7 @@ CREATE TABLE `t_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` int(11) NOT NULL DEFAULT '1' COMMENT '是否启用（1启用，0停用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_user
@@ -715,6 +791,7 @@ INSERT INTO `t_user` VALUES ('1', '46461', '456', 'string', 'gwerg', '2020-09-30
 INSERT INTO `t_user` VALUES ('2', '262627', '李四', '企管部', 'xx科技', '2020-09-30 10:47:57', '1');
 INSERT INTO `t_user` VALUES ('3', '262628', '王五', '财务部', 'xx科技', '2020-09-30 10:48:16', '1');
 INSERT INTO `t_user` VALUES ('4', '262629', '赵六', '财务部', 'xx科技', '2020-09-30 10:48:36', '1');
+INSERT INTO `t_user` VALUES ('5', '260234', '名称', '部门', '公司', '2021-01-18 10:48:08', '1');
 
 -- ----------------------------
 -- Table structure for t_user_role
@@ -725,7 +802,7 @@ CREATE TABLE `t_user_role` (
   `u_id` int(11) DEFAULT NULL,
   `r_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_user_role
@@ -734,3 +811,4 @@ INSERT INTO `t_user_role` VALUES ('2', '2', '1');
 INSERT INTO `t_user_role` VALUES ('3', '3', '1');
 INSERT INTO `t_user_role` VALUES ('4', '4', '1');
 INSERT INTO `t_user_role` VALUES ('14', '1', '1');
+INSERT INTO `t_user_role` VALUES ('16', '5', '2');

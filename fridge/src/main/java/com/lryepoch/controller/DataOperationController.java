@@ -10,7 +10,6 @@ import com.lryepoch.service.DataService;
 import com.lryepoch.service.QueryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,7 +77,7 @@ public class DataOperationController {
         }
     }
 
-    @ApiOperation(value = "根据ProductInfo id 删除Info/price以及professional数据（deleted=1）", notes = "传入一个id的数组")
+    @ApiOperation(value = "根据ProductInfo id 删除Info/price以及professional数据（deleted=0）", notes = "传入一个id的数组")
     @PostMapping("/deleteProduct")
     public CommonResult deleteProduct(@RequestBody List<Integer> ids) {
         dataService.deleteProduct(ids);
@@ -131,13 +130,13 @@ public class DataOperationController {
 
     @ApiOperation(value = "录入爬虫数据表数据到正式表", notes = "根据id录入爬虫数据")
     @PostMapping(value = "/ensureReptileData")
-    public CommonResult insertReptileData(@RequestBody List<Integer> ids){
+    public CommonResult insertReptileData(@RequestBody List<Integer> ids) {
         return dataService.ensureReptileData(ids);
     }
 
     @ApiOperation(value = "更新爬虫数据表数据", notes = "需要id, 且model不能修改，不能与爬虫表中的其他数据的机型相同")
     @PostMapping(value = "/updateReptileData")
-    public CommonResult updateReptileData(@RequestBody JSONObject json){
+    public CommonResult updateReptileData(@RequestBody JSONObject json) {
         return dataService.updateReptileData(json);
     }
 

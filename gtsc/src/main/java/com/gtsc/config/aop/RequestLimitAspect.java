@@ -1,6 +1,6 @@
 package com.gtsc.config.aop;
 
-import com.resource.common.utils.IpUtils;
+import com.gtsc.util.IpUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
