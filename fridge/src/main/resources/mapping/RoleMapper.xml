@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lryepoch.dao.RoleQueryMapper">
     <select id="getMenuByRole" resultType="com.lryepoch.entity.usermanage.MenuDTO">
-        select c.id, c.description as name, c.parent_id
+        select c.id, c.description as name, c.parent_id as parentId
         from t_role a, t_role_menu b, t_menu c
         where a.deleted=1 and c.deleted=1 and a.id=b.r_id and b.m_id=c.id and a.id=#{rid}
     </select>

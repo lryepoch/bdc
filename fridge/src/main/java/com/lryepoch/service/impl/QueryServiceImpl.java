@@ -346,7 +346,7 @@ public class QueryServiceImpl implements QueryService {
     @Override
     public JSONObject getProductContrast(Integer[] ids) {
         List<ProductInfo> infoList = infoJpaMapper.findAllById(new ArrayList<>(Arrays.asList(ids)));
-        if (infoList.size()<0){
+        if (infoList.size() < 0) {
             return null;
         }
         List<String> modelList = new LinkedList<>();
@@ -362,28 +362,28 @@ public class QueryServiceImpl implements QueryService {
         JSONArray array = new JSONArray();
         //把各个机型的评分表抽出计算雷达图
         JSONArray chartArray = new JSONArray();
-        for (Integer id: ids){
+        for (Integer id : ids) {
             JSONObject obj = new JSONObject(true);
             infoList.stream()
-                    .filter(in->in.getId()==id)
-                    .forEach(in2->{
+                    .filter(in -> in.getId() == id)
+                    .forEach(in2 -> {
                         JSONArray priceArray = new JSONArray();
                         priceList.parallelStream()
-                                .filter(pr->pr.getModel().equals(in2.getModel()))
+                                .filter(pr -> pr.getModel().equals(in2.getModel()))
                                 .forEach(priceArray::add);
                         professions.stream()
-                                .filter(pro->pro.getModel().equals(in2.getModel()))
-                                .forEach(pro2->obj.put("professional", pro2));
+                                .filter(pro -> pro.getModel().equals(in2.getModel()))
+                                .forEach(pro2 -> obj.put("professional", pro2));
                         UserRatingDTO ratingDTO = rateService.getUserAvgRating(in2.getId());
                         //没有用户评分则默认是0
-                        if(ratingDTO==null){
+                        if (ratingDTO == null) {
                             ratingDTO = new UserRatingDTO();
                         }
                         //价格排序
-                        priceArray.sort((p1,p2)->{
-                            if (((ProductPrice)p1).getActiveTime().after(((ProductPrice)p2).getActiveTime())){
+                        priceArray.sort((p1, p2) -> {
+                            if (((ProductPrice) p1).getActiveTime().after(((ProductPrice) p2).getActiveTime())) {
                                 return -1;
-                            } else if(((ProductPrice)p1).getActiveTime().before(((ProductPrice)p2).getActiveTime())){
+                            } else if (((ProductPrice) p1).getActiveTime().before(((ProductPrice) p2).getActiveTime())) {
                                 return 1;
                             } else {
                                 return 0;
@@ -391,12 +391,12 @@ public class QueryServiceImpl implements QueryService {
                         });
                         //取出最大最小值，形成一个范围【min~max】
                         String priceField;
-                        if (priceArray.size()>=2){
-                            priceField="["+((ProductPrice)priceArray.get(priceArray.size()-1)).getPrice()+"~"+((ProductPrice)priceArray.get(0)).getPrice()+"]";
-                        } else if(priceArray.size()==1){
-                            priceField = "["+((ProductPrice)priceArray.get(priceArray.size()-1)).getPrice()+"]";
-                        } else{
-                            priceField="暂无价格";
+                        if (priceArray.size() >= 2) {
+                            priceField = "[" + ((ProductPrice) priceArray.get(priceArray.size() - 1)).getPrice() + "~" + ((ProductPrice) priceArray.get(0)).getPrice() + "]";
+                        } else if (priceArray.size() == 1) {
+                            priceField = "[" + ((ProductPrice) priceArray.get(priceArray.size() - 1)).getPrice() + "]";
+                        } else {
+                            priceField = "暂无价格";
                         }
                         obj.put("info", in2);
                         obj.put("mainPic", decryptionUtils.getPictureUrls(in2.getId(), "main"));
@@ -415,11 +415,10 @@ public class QueryServiceImpl implements QueryService {
     }
 
     /**
-    * @description 抽取数据中的评分，拼成雷达图数据格式，并与参数数据一起封装
-    * @author lryepoch
-    * @date 2020/11/12 9:13
-    *
-    */
+     * @description 抽取数据中的评分，拼成雷达图数据格式，并与参数数据一起封装
+     * @author lryepoch
+     * @date 2020/11/12 9:13
+     */
     private JSONObject getChartData(JSONArray array, JSONArray chartArray) {
         //雷达图求最大值
         JSONArray indicatorArray = new JSONArray();
@@ -427,22 +426,22 @@ public class QueryServiceImpl implements QueryService {
         List<Double> sortList = new ArrayList<>();
         List<String> colList = Arrays.asList(ServiceEnum.PERFORMANCE.getString(), ServiceEnum.ECONOMY.getString(), ServiceEnum.AESTHETICINDEX.getString(), ServiceEnum.EASE.getString());
         //对每个指标进行遍历取最大值
-        colList.forEach(col->{
+        colList.forEach(col -> {
             sortList.clear();
             //最大值数组
             JSONObject indicator = new JSONObject(true);
-            chartArray.forEach(c->sortList.add(((JSONObject)c).getDouble(col)));
+            chartArray.forEach(c -> sortList.add(((JSONObject) c).getDouble(col)));
             indicator.put("name", col);
-            indicator.put("max", sortList.parallelStream().max(Double::compareTo).orElseGet(()-> Double.valueOf(0)));
+            indicator.put("max", sortList.parallelStream().max(Double::compareTo).orElseGet(() -> Double.valueOf(0)));
             indicatorArray.add(indicator);
         });
         //取出每个型号的值成一个数组
-        chartArray.forEach(c->{
+        chartArray.forEach(c -> {
             //每个型号的所有指标数据
             JSONObject data = new JSONObject(true);
-            data.put("name", ((JSONObject)c).getString("model"));
+            data.put("name", ((JSONObject) c).getString("model"));
             JSONArray values = new JSONArray();
-            colList.forEach(col2->values.add(((JSONObject)c).getDouble(col2)));
+            colList.forEach(col2 -> values.add(((JSONObject) c).getDouble(col2)));
             data.put("value", values);
             dataArray.add(data);
         });

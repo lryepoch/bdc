@@ -81,10 +81,11 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public String judgeService(JSONObject productInfoJson, Class productInfoClazz) {
+        //使用了反射
         Field[] fields = productInfoClazz.getDeclaredFields();
         //为null?
         Map<String, String> columnZh = columnCache.getColumnsZh();
-        //映射对应表全部字段，并对字段对应属性进行校验
+        //映射对应表全部字段，并对字段对应属性进行校验。一个一个校验的
         for (Field field : fields) {
             if (!judgeNullAndType(productInfoJson, field)) {
                 return "【" + columnZh.get(field.getName()) + "】格式错误或者为空";
@@ -139,6 +140,9 @@ public class DataServiceImpl implements DataService {
 
     }
 
+    /**
+     * jpa的新增和修改都是使用save()方法的，此处可同时使用
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public CommonResult infoAndPriceAddAndUpdate(JSONObject json) {
@@ -147,6 +151,7 @@ public class DataServiceImpl implements DataService {
         JSONArray priceArray = json.getJSONArray(priceStr);
         List<ProductPrice> list = new ArrayList<>();
 
+        //删除当前型号已存在的价格信息
         priceJpaMapper.deleteByModel(json.getString("model"));
         //拿到价格数组
         if (priceArray != null && priceArray.size() != 0) {
@@ -163,6 +168,7 @@ public class DataServiceImpl implements DataService {
                 price.setUpdateTime(Timestamp.valueOf(LocalDateTime.now()));
                 list.add(price);
             }
+            //先新增该型号的价格信息
             if (list.size() > 0) {
                 priceJpaMapper.saveAll(list);
             }
@@ -184,10 +190,12 @@ public class DataServiceImpl implements DataService {
      * @date 2020/10/31 14:38
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public CommonResult excelSaveInfo(InputStream inputStream, String fileType) throws IOException {
         List<ColumnDTO> list = columnsMapper.getExcelInfoList();
-        //抽取excel中的数据
+        //1.抽取excel中的数据
         JSONArray array = getExcelJsonArray(inputStream, fileType, list);
+        //2.校验抽取出来的array数据
         List<String> errorList = judgeAndSaveBatchInfoData(array);
 
         JSONObject resultJson = new JSONObject();
@@ -206,7 +214,9 @@ public class DataServiceImpl implements DataService {
      * @author lryepoch
      * @date 2020/10/31 14:50
      */
+    @Transactional(rollbackFor = Exception.class)
     private List<String> judgeAndSaveBatchInfoData(JSONArray array) {
+        //errorList接收有问题的字段
         List<String> errorList = new LinkedList<>();
         List<ProductInfo> successList = new LinkedList<>();
         List<String> modelList = new ArrayList<>();
@@ -218,6 +228,9 @@ public class DataServiceImpl implements DataService {
             if ((errorName = dataService.judgeService(obj, ProductInfo.class)) == null) {
                 ProductInfo productInfo = obj.toJavaObject(ProductInfo.class);
                 productInfo.setUpdateTime(Timestamp.valueOf(LocalDateTime.now()));
+
+                //queryService.judgeIfExist(productInfo.getModel())查数据库
+                //modelList.contains(productInfo.getModel())查excel表
                 if (queryService.judgeIfExist(productInfo.getModel()) || modelList.contains(productInfo.getModel())) {
                     errorList.add("第" + (i + 1) + "行 机型" + productInfo.getModel() + "与Excel或者数据库重复");
                 } else {
@@ -241,10 +254,12 @@ public class DataServiceImpl implements DataService {
      * @date 2020/10/31 14:38
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public CommonResult excelSavePrice(InputStream inputStream, String fileType) throws IOException {
         List<String> errorList = new LinkedList<>();
         List<ProductPrice> successList = new ArrayList<>();
         List<ColumnDTO> list = columnsMapper.getExcelPriceList();
+        //在索引为0的地方，新增一个model字段
         list.add(0, new ColumnDTO().setColumn("model").setType("string"));
         //抽取excel中数据
         JSONArray array = getExcelJsonArray(inputStream, fileType, list);
@@ -252,12 +267,14 @@ public class DataServiceImpl implements DataService {
         for (int i = 0; i < array.size(); i++) {
             JSONObject obj = array.getJSONObject(i);
             List<String> modelList = columnsMapper.getFilterValue("model", ServiceEnum.INFO_TABLE_NAME.getString());
+
+            //先判断info表是否存在该机型
             if (!modelList.contains(obj.getString("model"))) {
                 errorList.add("第" + (i + 2) + "行 机型【" + obj.getString("model") + "】不存在");
                 continue;
             }
             String errorName;
-            //检验字段
+            //存在，则进一步检验字段
             if ((errorName = dataService.judgeService(obj, ProductPrice.class)) != null) {
                 errorList.add("第" + (i + 2) + "行 " + errorName);
                 continue;
@@ -305,12 +322,14 @@ public class DataServiceImpl implements DataService {
         } else {
             return new JSONArray();
         }
-        //智取第一个sheet
+        //只取第一个sheet
         Sheet sheet = wb.getSheetAt(0);
         //获取最后一行
         rowNum = sheet.getLastRowNum();
         int aimNum = rowNum;
 
+
+        //1.排除空的行
         //获取最大行，需要从最后一条开始倒序排除为空的行和带格式的行
         boolean breakFlag = false;
         for (int i = 1; i < aimNum; i++) {
@@ -320,7 +339,7 @@ public class DataServiceImpl implements DataService {
                 rowNum--;
                 continue;
             }
-            //排除为空或者空格的行
+            //排除完全空或者都是空格的行，j小于等于list.size()列。即只要有一个单元格不为空都通过
             for (int j = 0; j < list.size(); j++) {
                 Cell indexCell = lastRow.getCell(j);
                 if (indexCell != null && !"".equals(indexCell.getStringCellValue().trim())) {
@@ -332,14 +351,18 @@ public class DataServiceImpl implements DataService {
             if (breakFlag) {
                 break;
             } else {
+                //行数递减
                 rowNum--;
             }
         }
+
+        //2.读取剩余的有效行，到array中并返回
 
         //迭代每行
         for (int i = 1; i < rowNum; i++) {
             Row row = sheet.getRow(i);
             JSONObject obj = new JSONObject(true);
+
             //迭代每个单元格，这里默认excel格式标准，列数等于Info字段数
             for (int j = 0; j < list.size(); j++) {
                 Cell cell = row.getCell(j);
@@ -358,6 +381,7 @@ public class DataServiceImpl implements DataService {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         cellValue = sdf.format(cell.getDateCellValue());
                     }
+                    //意味着excel表中的字段顺序必须固定
                     obj.put(list.get(j).getColumn(), cellValue);
                 }
                 //为空直接把null放进去
@@ -365,8 +389,9 @@ public class DataServiceImpl implements DataService {
                     obj.put(list.get(j).getColumn(), null);
                 }
             }
-            in.close();
+            array.add(obj);
         }
+        in.close();
         return array;
     }
 
@@ -401,7 +426,9 @@ public class DataServiceImpl implements DataService {
      * @date 2020/10/31 15:40
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public CommonResult ensureReptileData(List<Integer> ids) {
+        //检查爬虫表数据是否存在
         List<ReptileInfo> reptileInfos = reptileJpaMapper.findAllById(ids);
         if (reptileInfos.size() == 0) {
             return CommonResult.fail(ResultEnum.ERR.getCode(), "爬虫表未找到该型号，请确认是否存在");
@@ -421,12 +448,14 @@ public class DataServiceImpl implements DataService {
 
         JSONArray array = JSONArray.parseArray(JSON.toJSONString(reptileInfos, SerializerFeature.WriteMapNullValue));
 
-        //在爬虫表中标记已确认导入的数据为已删除标志
+        //删除在爬虫表中标记已确认导入的数据（标志）
         reptileInfos.forEach(reptileInfo -> reptileInfo.setDeleted(0));
         reptileJpaMapper.saveAll(reptileInfos);
 
+        //判断和插入新的数据
         List<String> errorList = judgeAndSaveBatchInfoData(array);
-        //检验并返回导入的结果，若有错误则回滚删除标记
+
+        //检验并返回导入的结果，若有错误则回滚上面的删除标记
         if (errorList.size() > 0) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }

@@ -1,9 +1,9 @@
 package com.lryepoch.entity.dto.columns;
 
 import com.lryepoch.dao.ColumnsMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +16,10 @@ import java.util.Map;
  */
 @Service
 public class ColumnCache {
-    @Autowired
+    @Resource
     private ColumnsMapper columnsMapper;
 
+    //本身还是字符串，只是数据类型各不同
     private List<String> stringList = new ArrayList<>();
     private List<String> intList = new ArrayList<>();
     private List<String> doubleList = new ArrayList<>();
@@ -27,10 +28,16 @@ public class ColumnCache {
     private Map<String, String> columnsZh = new HashMap<>();
     private Map<String, Integer> columnsFlag = new HashMap<>();
 
+    /**
+    * 是否中文
+    */
     public Map<String, String> getColumnsZh(){
         return columnsZh;
     }
 
+    /**
+    * 是否必要
+    */
     public Map<String, Integer> getColumnsFlag(){
         return columnsFlag;
     }

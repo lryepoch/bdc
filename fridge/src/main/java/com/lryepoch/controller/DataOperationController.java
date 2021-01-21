@@ -34,6 +34,10 @@ public class DataOperationController {
     @Autowired
     private QueryService queryService;
 
+    /**
+     * 1.插入或更新都是使用jpa的save()方法
+     * 2.先判断info字段类型，再在save之前判断price字段类型
+     */
     @ApiOperation(value = "插入或更新一条Info表数据及价格表数据", notes = "附id为更新，无id为增加")
     @PostMapping(value = {"/infoInsert", "/infoUpdate"})
     public CommonResult insertInfoData(@RequestBody JSONObject json) {
@@ -58,12 +62,21 @@ public class DataOperationController {
         }
     }
 
+    /**
+     * 1.批量更新info
+     * 1.1.读取excel数据到JSONArray中；
+     * 1.2.校验JSONArray中数据是否符合规范，符合则插入数据库，有错则返回异常；
+     * <p>
+     * 2.批量更新price
+     * 2.1.读取excel数据到JSONArray中；
+     * 2.2.校验JSONArray中数据是否符合规范，符合则插入数据库，有错则返回异常；
+     */
     @ApiOperation(value = "excel批量更新info/price表数据", notes = "路径的最后一个值为请求类型'model'或者'price'，限定只能一个文件，且对应key为'excel'")
     @PostMapping(value = "/upload/{requestType}")
     public CommonResult uploadExcel(@PathVariable("requestType") String uploadType, @RequestParam("excel") MultipartFile file) throws IOException {
-        //price.xlsx
+        //读取文件名 price.xlsx
         String fileName = file.getOriginalFilename();
-        //xlsx
+        //后缀有2种，xls和xlsx，需要分情况
         String fileType = (fileName != null ? fileName.split("\\.") : new String[0])[1];
 
         //转化并放进数据库
@@ -96,6 +109,9 @@ public class DataOperationController {
         return CommonResult.success(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg());
     }
 
+    /**
+    * 指定文件下载路径
+    */
     @ApiOperation(value = "下载模板文件", notes = "下载模板文件，路径的最后一个值为请求类型'model'或者'price'下载指定类型", produces = "application/octet-stream")
     @GetMapping(value = "/download/{requestType}")
     public void download(@PathVariable("requestType") String requestType, HttpServletResponse response) {
@@ -128,12 +144,18 @@ public class DataOperationController {
         }
     }
 
+    /**
+    * 待确认数据
+    */
     @ApiOperation(value = "录入爬虫数据表数据到正式表", notes = "根据id录入爬虫数据")
     @PostMapping(value = "/ensureReptileData")
     public CommonResult insertReptileData(@RequestBody List<Integer> ids) {
         return dataService.ensureReptileData(ids);
     }
 
+    /**
+    * 根据id以及model双重确认是否可以更新
+    */
     @ApiOperation(value = "更新爬虫数据表数据", notes = "需要id, 且model不能修改，不能与爬虫表中的其他数据的机型相同")
     @PostMapping(value = "/updateReptileData")
     public CommonResult updateReptileData(@RequestBody JSONObject json) {

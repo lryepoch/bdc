@@ -49,7 +49,7 @@ mybatis:
 
 #文件服务器
 ftp:
-  host: 127.0.0.1
+  host: 172.28.31.62
   port: 21
   username: frigroot
   password: qwer!2344
@@ -58,11 +58,11 @@ ftp:
 
 
 path:
-  localPath: http://127.0.0.1:8081/fridge
+  localPath: http://172.28.31.62:8080/fridge
   picturePath: ‪C:/Users/260408/Desktop/aimFile/picture/
   excelPath: ‪C:/Users/260408/Desktop/aimFile/
-  loginUrl: http://127.0.0.1:8081/login
-  indexUrl: http://127.0.0.1:8081/
+  loginUrl: http://172.28.31.62:8080/login
+  indexUrl: http://172.28.31.62:8080/
 
 
 

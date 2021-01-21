@@ -47,6 +47,9 @@ public class RatingController {
         return CommonResult.success(rateService.getRateWeight());
     }
 
+    /**
+    * 对产品评分，默认一个型号只评一次
+    */
     @ApiOperation(value = "用户对产品评分", notes = "uid是用户id，productRatingVO id是mid")
     @PostMapping(value = "/productRate")
     public CommonResult rateForModel(@RequestBody ProductRatingVO productRatingVO) throws IllegalAccessException {
