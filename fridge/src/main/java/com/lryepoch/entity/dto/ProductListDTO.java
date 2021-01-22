@@ -20,7 +20,7 @@ public class ProductListDTO {
     private String door;
     private String displayMode;
     private String model;
-    private String totalVolume;
+    private Double totalVolume;
     private String compressor;
     private String refrigerationMode;
     private Double platformWidth;

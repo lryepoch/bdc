@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lryepoch.dao.ReptileQueryMapper">
-    <select id="getReptileProductList" resultType="com.lryepoch.entity.dto.ProductListDTO">
-        select a.id, data_source, brand, door, a.level, a.model, a.display_mode, a.total_volume, a.platform_depth,
-        a.platform_width, a.compressor,
-        a.refrigeration_mode, b.id pid, price, b.active_time, a.update_time
-        from new_product_info a left join new_product_price b on a.model = b.model
+
+    <resultMap id="ProductListMap" type="com.lryepoch.entity.dto.ProductListDTO">
+        <id property="id" column="id"/>
+        <result property="dataSource" column="data_source"/>
+        <result property="brand" column="brand"/>
+        <result property="door" column="door"/>
+        <result property="level" column="level"/>
+        <result property="model" column="model"/>
+        <result property="displayMode" column="display_mode"/>
+        <result property="totalVolume" column="total_volume"/>
+        <result property="compressor" column="compressor"/>
+        <result property="platformDepth" column="platform_depth"/>
+        <result property="platformWidth" column="platform_width"/>
+        <result property="refrigerationMode" column="refrigeration_mode"/>
+        <result property="updateTime" column="update_time"/>
+        <collection property="prices" ofType="com.lryepoch.entity.product.ProductPrice">
+            <id property="id" column="pid"/>
+            <result property="price" column="price"/>
+            <result property="activeTime" column="active_time"/>
+        </collection>
+    </resultMap>
+
+    <select id="getReptileProductList" resultMap="ProductListMap">
+        select a.id, data_source, brand, door, a.level, a.model, a.display_mode, a.total_volume, a.platform_depth, a.platform_width, a.compressor,
+                a.refrigeration_mode, b.id pid, price, b.active_time, a.update_time
+        from new_product_info a
+            left join new_product_price b on a.model = b.model
         where a.deleted=1 and b.deleted=1
         <if test="model !=null and !model.equals('')">
             and a.model=#{model}

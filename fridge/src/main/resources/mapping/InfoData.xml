@@ -13,16 +13,38 @@
         select * from product_info where model = #{model} and deleted = 1 limit 1
     </select>
 
+    <resultMap id="ProductListMap" type="com.lryepoch.entity.dto.ProductListDTO">
+        <id property="id" column="id"/>
+        <result property="dataSource" column="data_source"/>
+        <result property="brand" column="brand"/>
+        <result property="door" column="door"/>
+        <result property="level" column="level"/>
+        <result property="model" column="model"/>
+        <result property="displayMode" column="display_mode"/>
+        <result property="totalVolume" column="total_volume"/>
+        <result property="compressor" column="compressor"/>
+        <result property="platformDepth" column="platform_depth"/>
+        <result property="platformWidth" column="platform_width"/>
+        <result property="refrigerationMode" column="refrigeration_mode"/>
+        <result property="updateTime" column="update_time"/>
+        <collection property="prices" ofType="com.lryepoch.entity.product.ProductPrice">
+            <id property="id" column="pid"/>
+            <result property="price" column="price"/>
+            <result property="activeTime" column="active_time"/>
+        </collection>
+    </resultMap>
+
     <!--根据筛选条件获取产品列表-->
-    <select id="getProductList" resultType="com.lryepoch.entity.dto.ProductListDTO">
-        select a.id, data_source, brand, door, a.level, a.model, a.display_mode, a.total_volume, a.platform_depth,
-        a.platform_width, a.compressor,
-        a.refrigeration_mode, b.id pid, price, b.active_time, a.update_time
-        from product_info a left join product_price b on a.model = b.model
+    <select id="getProductList" resultMap="ProductListMap">
+        select a.id, a.data_source, brand, door, a.level, a.model, a.display_mode, a.total_volume, a.platform_depth, a.platform_width, a.compressor,
+                a.refrigeration_mode, a.update_time, b.id pid, b.price, b.active_time
+        from product_info a
+            left join product_price b on a.model = b.model
         where a.deleted=1 and b.deleted=1
         <if test="model !=null and !model.equals('')">
             and a.model=#{model}
         </if>
+
         <if test="dataSource!=null and dataSource.size()>0">
             and data_source in
             <foreach collection="dataSource" item="data_source" index="index" separator="," open="(" close=")">

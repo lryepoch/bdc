@@ -94,14 +94,14 @@ public class QueryServiceImpl implements QueryService {
             //价格表里的渠道筛选器另外处理
             String priceFilter = "distributionChannel", numFilter = "tempAreaNum", modelExclude = "model";
 
-            //只需要取出String类型的筛选器的值即可，数字类型的可在自定义范围筛选
+            //只需要取出String类型的筛选器的值即可；数字类型的可直接在页面自定义范围后进行查库筛选
             if (cache.getStringList().contains(filterName) || numFilter.equals(filterName)) {
                 if (priceFilter.equals(filterName)) {
-                    tableName = ServiceEnum.PRICE_TABLE_NAME.getString();
+                    tableName = ServiceEnum.PRICE_TABLE_NAME.getString();//product_price
                 } else if (modelExclude.equals(filterName)) {
                     continue;
                 } else {
-                    tableName = ServiceEnum.INFO_TABLE_NAME.getString();
+                    tableName = ServiceEnum.INFO_TABLE_NAME.getString();//product_info
                 }
 
                 //实体中的驼峰命名需要转换成下划线才能直接查询数据库
@@ -113,6 +113,7 @@ public class QueryServiceImpl implements QueryService {
                         sb.append(c);
                     }
                 }
+                //根据表名、字段名查询该字段的各种结果
                 List<String> valueList = columnsMapper.getFilterValue(sb.toString(), tableName);
                 //去除常见的非标准元素
                 valueList.remove("N/A");
@@ -133,8 +134,10 @@ public class QueryServiceImpl implements QueryService {
     public CommonResult getProductList(InfoFilterVO infoFilterVO, HttpServletRequest request) {
         //查询出所有的数据
         LinkedList<ProductListDTO> list = infoQueryMapper.getProductList(infoFilterVO);
+
         //根据用户名获取缓存中的集合，该集合包含上周日上新价格对应的冰箱ID。pid就是冰箱id
         Set<Integer> set = ReminderCache.map.get(((Map) request.getSession().getAttribute("ssoUserInfo")).get("UserName").toString());
+
         set = (set == null) ? new HashSet<>() : set;
 
         //设置提醒标志位
@@ -196,7 +199,7 @@ public class QueryServiceImpl implements QueryService {
     public CommonResult getProductTotal(InfoFilterVO infoFilterVO) {
         //查询出所有的数据
         List<ProductListDTO> list = infoQueryMapper.getProductList(infoFilterVO);
-        //Supplier只是为我们提供了一个创建好的对象
+        //Supplier只是为我们提供了一个已经存在的对象
         Supplier<Stream<ProductListDTO>> streamSupplier = list::parallelStream;
         //流中页面需要排除的机型
         List<String> excludeList = infoFilterVO.getExcludeMachine() == null ? new ArrayList<>() : infoFilterVO.getExcludeMachine();
@@ -218,7 +221,7 @@ public class QueryServiceImpl implements QueryService {
         //2.制冷模式(风/直冷机型分布比例)
         Map<String, List<ProductListDTO>> refriMode = filterSupplier.get().collect(Collectors.groupingBy(ProductListDTO::getRefrigerationMode));
         JSONArray refriModeArray = new JSONArray();
-        compressorMap.forEach((k, v) -> {
+        refriMode.forEach((k, v) -> {
             JSONObject json = new JSONObject(true);
             json.put("refrigerationMode", k);
             json.put("weight", v.size());
@@ -299,10 +302,11 @@ public class QueryServiceImpl implements QueryService {
 
     @Override
     public CommonResult getProductDetail(int id, HttpServletRequest request) {
-        //若查看过某个机型，则取消该机型的上新提醒
+        //若查看过某个机型，则取消该机型的上新提醒？？？？？？？？
         String userName = ((Map) request.getSession().getAttribute("ssoUserInfo")).get("UserName").toString();
         ReminderCache.removeId(userName, id);
 
+        //1.基本信息
         Optional<ProductInfo> info = infoJpaMapper.findById(id);
         ProductInfo infoResult;
         if (info.isPresent()) {
@@ -310,10 +314,13 @@ public class QueryServiceImpl implements QueryService {
         } else {
             return CommonResult.fail(ResultEnum.ERR.getCode(), "id对应机型不存在");
         }
+        //2.价格信息
         List<ProductPrice> prices = priceJpaMapper.findByModelOrderByActiveTimeDesc(infoResult.getModel());
+        //3.专业参数信息
         ProductProfessionalParameters profession = professionalParamMapper.findByModel(infoResult.getModel());
         JSONObject obj = new JSONObject(true);
 
+        //4.图片信息
         //获取图片地址
         //拼接info、profession所有的图片地址，注入结果
         JSONObject pictureObj = new JSONObject(true);
@@ -326,6 +333,7 @@ public class QueryServiceImpl implements QueryService {
         //专业参数图片
         pictureObj.put("profUrl", pictureService.packingProfPictures(infoResult.getId()));
 
+        //5.评分信息
         //获取机型用户平均评价分
         UserRatingDTO rating = rateService.getUserAvgRating(infoResult.getId());
 
@@ -346,9 +354,10 @@ public class QueryServiceImpl implements QueryService {
     @Override
     public JSONObject getProductContrast(Integer[] ids) {
         List<ProductInfo> infoList = infoJpaMapper.findAllById(new ArrayList<>(Arrays.asList(ids)));
-        if (infoList.size() < 0) {
+        if (infoList.size() <= 0) {
             return null;
         }
+        //从infoList挖出model集合，装入modelList
         List<String> modelList = new LinkedList<>();
         infoList.forEach(info -> modelList.add(info.getModel()));
 
@@ -461,7 +470,7 @@ public class QueryServiceImpl implements QueryService {
 
     @Override
     public CommonResult getReptileProductList(InfoFilterVO infoFilterVO) {
-        //查询出所有数据
+        //查询出所有数据(info和price)
         List<ProductListDTO> list = reptileQueryMapper.getReptileProductList(infoFilterVO);
         //设置每个型号的最新价格
         list.forEach(p -> {

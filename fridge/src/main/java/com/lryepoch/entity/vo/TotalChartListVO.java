@@ -15,9 +15,9 @@ public class TotalChartListVO {
     private String door;
     private String displayMode;
     private String model;
-    private String totalVolume;
+    private Double totalVolume;
     private String compressor;
     private String refrigerationMode;
-    private String platformWidth;
-    private String platformDepth;
+    private Double platformWidth;
+    private Double platformDepth;
 }

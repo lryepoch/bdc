@@ -36,7 +36,7 @@ datasource:
 
 
 mybatis:
-  mapper-locations: classpath:/mapping/*.xml            #mapper.xml文件位置
+  mapper-locations: classpath:/mapping/*.xml            #mapping.xml文件位置
   type-aliases-package: com.lryepoch.entity             #配置别名
   configuration:
     map-underscore-to-camel-case: true                  #开启驼峰命名【mybatis默认使属性名和数据库字段名一一对应的，需要开启驼峰命名】
