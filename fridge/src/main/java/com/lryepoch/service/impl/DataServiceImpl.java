@@ -21,11 +21,10 @@ import com.lryepoch.entity.product.ReptileInfo;
 import com.lryepoch.service.DataService;
 
 import com.lryepoch.service.QueryService;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -123,7 +122,7 @@ public class DataServiceImpl implements DataService {
         }
         //double
         else if (doubleList.contains(columnName)) {
-            return (columnsFlag.get(columnName) != 1 && (str == null || str.matches("[0-9]+(.[0-9]+)?"))) || (columnsFlag.get(columnName) == 1 && (str != null) && str.matches("[0-9](.[0-9]+)?"));
+            return (columnsFlag.get(columnName) != 1 && (str == null || str.matches("[0-9]+(.[0-9]+)?"))) || (columnsFlag.get(columnName) == 1 && (str != null) && str.matches("[0-9]+(.[0-9]+)?"));
         }
         //time
         else if (timeList.contains(columnName)) {
@@ -215,7 +214,7 @@ public class DataServiceImpl implements DataService {
      * @date 2020/10/31 14:50
      */
     @Transactional(rollbackFor = Exception.class)
-    private List<String> judgeAndSaveBatchInfoData(JSONArray array) {
+    List<String> judgeAndSaveBatchInfoData(JSONArray array) {
         //errorList接收有问题的字段
         List<String> errorList = new LinkedList<>();
         List<ProductInfo> successList = new LinkedList<>();
@@ -238,7 +237,7 @@ public class DataServiceImpl implements DataService {
                     modelList.add(productInfo.getModel());
                 }
             } else {
-                errorList.add("第" + i + "行 机型" + obj.getString("model") + errorName);
+                errorList.add("第" + (i + 1) + "行 机型" + obj.getString("model") + errorName);
             }
         }
         if (successList.size() == array.size()) {
@@ -359,7 +358,7 @@ public class DataServiceImpl implements DataService {
         //2.读取剩余的有效行，到array中并返回
 
         //迭代每行
-        for (int i = 1; i < rowNum; i++) {
+        for (int i = 1; i <= rowNum; i++) {
             Row row = sheet.getRow(i);
             JSONObject obj = new JSONObject(true);
 
@@ -367,15 +366,15 @@ public class DataServiceImpl implements DataService {
             for (int j = 0; j < list.size(); j++) {
                 Cell cell = row.getCell(j);
                 //对单元格进行判断，不为空把该字段及对应值就放进json对象
-                if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+                if (cell != null && cell.getCellType() != CellType.BLANK) {
                     String cellValue;
                     //字段格式不为time时，都转为String统一处理
                     if (!"time".equals(list.get(j).getType())) {
-                        cell.setCellValue(Cell.CELL_TYPE_STRING);
+                        cell.setCellType(CellType.STRING);
                         cellValue = cell.toString();
                     }
                     //为time时，判断是否为时间格式，如不是则放入字符串NULL，后续检验直接报错该条数据
-                    else if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                    else if (cell.getCellType() == CellType.STRING) {
                         cellValue = "NULL";
                     } else {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

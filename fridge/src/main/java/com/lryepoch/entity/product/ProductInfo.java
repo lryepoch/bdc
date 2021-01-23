@@ -30,30 +30,30 @@ public class ProductInfo {
     @JSONField(format = "yyyy-MM-dd")
     private Date updateTime;
     private String door;
-    private double totalVolume;
-    private double refrigeVol;
-    private double freezerVol;
-    private double variableHouseVol;
+    private Double totalVolume;
+    private Double refrigeVol;
+    private Double freezerVol;
+    private Double variableHouseVol;
     private Long tempAreaNum;
-    private double productWidth;
-    private double productHeight;
-    private double productDepth;
-    private double platformWidth;
-    private double platformHeight;
-    private double platformDepth;
+    private Double productWidth;
+    private Double productHeight;
+    private Double productDepth;
+    private Double platformWidth;
+    private Double platformHeight;
+    private Double platformDepth;
     private Double packingWidth;
     private Double packingHeight;
     private Double packingDepth;
 
     @JSONField(format = "yyyy-MM-dd")
     private Date marketTime;
-    private double weight;
+    private Double weight;
     private String climateType;
     private String level;
     private String systemType;
-    private double compPowerConsumption;
-    private double coolingCapacity;
-    private double noise;
+    private Double compPowerConsumption;
+    private Double coolingCapacity;
+    private Double noise;
     private String compressor;
     private String refrigerationMode;
     private String coolingMode;

@@ -90,6 +90,9 @@ public class DataOperationController {
         }
     }
 
+    /**
+    * 删除info/price/professional数据
+    */
     @ApiOperation(value = "根据ProductInfo id 删除Info/price以及professional数据（deleted=0）", notes = "传入一个id的数组")
     @PostMapping("/deleteProduct")
     public CommonResult deleteProduct(@RequestBody List<Integer> ids) {
@@ -97,6 +100,9 @@ public class DataOperationController {
         return CommonResult.success(ResultEnum.SUCCESS.getCode(), "删除成功");
     }
 
+    /**
+    * 更新或者插入一条professional表数据
+    */
     @ApiOperation(value = "更新或者插入一条professional表数据", notes = "附id为更新，无id为增加")
     @PostMapping(value = {"/profParamInsert", "/profParamUpdate"})
     public CommonResult insertProfParamData(@RequestBody JSONObject json) {

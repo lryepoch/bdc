@@ -121,6 +121,9 @@ public class ProductQueryController {
         return queryService.getProductDetail(id, request);
     }
 
+    /**
+    * 有bug
+    */
     @ApiOperation(value = "获取产品对比信息")
     @PostMapping(value = "/getProductContrast")
     public CommonResult getProductContrast(@RequestBody Integer[] ids) {
