@@ -56,6 +56,7 @@ public class LoginServiceImpl implements LoginService {
                 if (user == null) {
                     return CommonResult.fail(ResultEnum.ERR.getCode(), "用户无权限");
                 } else {
+                    //把用户信息保存到session中
                     request.getSession().setAttribute("ssoUserInfo", ssoUserInfo);
 
                     //将用户权限更新进权限校验拦截器
