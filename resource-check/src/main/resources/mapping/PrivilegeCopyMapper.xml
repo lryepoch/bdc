@@ -26,6 +26,12 @@
         order by insert_time desc
     </select>
 
+    <select id="selectByCopyId" resultType="com.gree.privilege.entity.PrivilegeCopyRelation">
+        select id, copy_id, apply_id, source_type, project, db_name, db_view, privilege
+        from privilege_copy_relation where copy_id = #{id}
+        order by source_type
+    </select>
+
     <resultMap id="BaseResultMap" type="com.gree.privilege.entity.PrivilegeCopyVO">
         <id column="id" property="id"/>
         <result column="applicant" property="applicant"/>
